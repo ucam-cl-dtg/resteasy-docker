@@ -288,17 +288,38 @@ public class ContainerConfig {
 
 	@Override
 	public String toString() {
-		return "ContainerConfig [hostname=" + hostname + ", domainname="
-				+ domainname + ", user=" + user + ", memory=" + memory
-				+ ", memorySwap=" + memorySwap + ", cpuShares=" + cpuShares
-				+ ", attachStdin=" + attachStdin + ", attachStdout="
-				+ attachStdout + ", attachStderr=" + attachStderr + ", tty="
-				+ tty + ", openStdin=" + openStdin + ", stdinOnce=" + stdinOnce
-				+ ", env=" + env + ", cmd=" + Arrays.toString(cmd) + ", image="
-				+ image + ", volumes=" + volumes + ", volumesFrom="
-				+ volumesFrom + ", workingDir=" + workingDir
-				+ ", networkDisabled=" + networkDisabled + ", entryPoint="
-				+ entryPoint + ", portSpecs=" + portSpecs + ", exposedPorts="
-				+ exposedPorts + ", dns=" + dns + ", onBuild=" + onBuild + "]";
+		return "ContainerConfig ["
+				+ (hostname != null ? "hostname=" + hostname + ", " : "")
+				+ (domainname != null ? "domainname=" + domainname + ", " : "")
+				+ (user != null ? "user=" + user + ", " : "")
+				+ (memory != null ? "memory=" + memory + ", " : "")
+				+ (memorySwap != null ? "memorySwap=" + memorySwap + ", " : "")
+				+ (cpuShares != null ? "cpuShares=" + cpuShares + ", " : "")
+				+ (cpuset != null ? "cpuset=" + cpuset + ", " : "")
+				+ (attachStdin != null ? "attachStdin=" + attachStdin + ", "
+						: "")
+				+ (attachStdout != null ? "attachStdout=" + attachStdout + ", "
+						: "")
+				+ (attachStderr != null ? "attachStderr=" + attachStderr + ", "
+						: "")
+				+ (tty != null ? "tty=" + tty + ", " : "")
+				+ (openStdin != null ? "openStdin=" + openStdin + ", " : "")
+				+ (stdinOnce != null ? "stdinOnce=" + stdinOnce + ", " : "")
+				+ (env != null ? "env=" + env + ", " : "")
+				+ (cmd != null ? "cmd=" + Arrays.toString(cmd) + ", " : "")
+				+ (image != null ? "image=" + image + ", " : "")
+				+ (volumes != null ? "volumes=" + volumes + ", " : "")
+				+ (volumesFrom != null ? "volumesFrom=" + volumesFrom + ", "
+						: "")
+				+ (workingDir != null ? "workingDir=" + workingDir + ", " : "")
+				+ (networkDisabled != null ? "networkDisabled="
+						+ networkDisabled + ", " : "")
+				+ (entryPoint != null ? "entryPoint=" + entryPoint + ", " : "")
+				+ (portSpecs != null ? "portSpecs=" + portSpecs + ", " : "")
+				+ (exposedPorts != null ? "exposedPorts=" + exposedPorts + ", "
+						: "") + (dns != null ? "dns=" + dns + ", " : "")
+				+ (onBuild != null ? "onBuild=" + onBuild : "") + "]";
 	}
+
+	
 }
