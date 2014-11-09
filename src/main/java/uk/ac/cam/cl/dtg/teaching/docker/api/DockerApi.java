@@ -20,6 +20,7 @@ import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerStartConfig;
 import uk.ac.cam.cl.dtg.teaching.docker.model.Image;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ImageInfo;
 import uk.ac.cam.cl.dtg.teaching.docker.model.Version;
+import uk.ac.cam.cl.dtg.teaching.docker.model.WaitResponse;
 
 @Produces("application/json")
 @Consumes("application/json") 
@@ -46,6 +47,15 @@ public interface DockerApi {
 	public ContainerInfo inspectContainer(@PathParam("id") String id);
 
 
+	/**
+	 * Block until the container stops
+	 * @param id of the container
+	 * @return the container's exit code
+	 */
+	@POST
+	@Path("/containers/{id}/wait")
+	public WaitResponse waitContainer(@PathParam("id") String id);
+	
 	@DELETE
 	@Path("/containers/{id}")
 	public void deleteContainer(@PathParam("id") String id, @QueryParam("force") Boolean force, @QueryParam("v") Boolean removeVolumes);
