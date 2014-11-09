@@ -86,10 +86,19 @@ public class ContainerStartConfig {
 
 	@Override
 	public String toString() {
-		return "ContainerStartConfig [binds=" + Arrays.toString(binds)
-				+ ", lxcConf=" + lxcConf + ", portBindings=" + portBindings
-				+ ", publishAllPorts=" + publishAllPorts + ", privileged="
-				+ privileged + ", dns=" + Arrays.toString(dns)
-				+ ", volumesFrom=" + Arrays.toString(volumesFrom) + "]";
+		return "ContainerStartConfig ["
+				+ (binds != null ? "binds=" + Arrays.toString(binds) + ", "
+						: "")
+				+ (lxcConf != null ? "lxcConf=" + lxcConf + ", " : "")
+				+ (portBindings != null ? "portBindings=" + portBindings + ", "
+						: "")
+				+ (publishAllPorts != null ? "publishAllPorts="
+						+ publishAllPorts + ", " : "")
+				+ (privileged != null ? "privileged=" + privileged + ", " : "")
+				+ (dns != null ? "dns=" + Arrays.toString(dns) + ", " : "")
+				+ (volumesFrom != null ? "volumesFrom="
+						+ Arrays.toString(volumesFrom) : "") + "]";
 	}
+
+
 }
