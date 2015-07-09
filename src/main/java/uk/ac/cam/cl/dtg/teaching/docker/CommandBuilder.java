@@ -1,6 +1,5 @@
 package uk.ac.cam.cl.dtg.teaching.docker;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
