@@ -24,7 +24,17 @@ public class ContainerState {
 	
 	@JsonProperty("Ghost")
 	private Boolean ghost;
+	
+	@JsonProperty("Restarting")
+	private String restarting;
 
+	@JsonProperty("OOMKilled")
+	private String oomKilled;
+
+	@JsonProperty("Dead")
+	private String dead;
+
+	
 	/**
 	 * Set to true if this container is in the paused state.  
 	 * You can only pause/unpause a running container, so if this value is true then running should be true also
@@ -32,6 +42,10 @@ public class ContainerState {
 	@JsonProperty("Paused")
 	private Boolean paused;
 
+	
+	@JsonProperty("Error")
+	private String error;
+	
 	public Boolean isPaused() {
 		return paused;
 	}
@@ -86,6 +100,50 @@ public class ContainerState {
 
 	public void setGhost(Boolean ghost) {
 		this.ghost = ghost;
+	}
+
+	public String getRestarting() {
+		return restarting;
+	}
+
+	public void setRestarting(String restarting) {
+		this.restarting = restarting;
+	}
+
+	public String getOomKilled() {
+		return oomKilled;
+	}
+
+	public void setOomKilled(String oomKilled) {
+		this.oomKilled = oomKilled;
+	}
+
+	public Boolean getRunning() {
+		return running;
+	}
+
+	public Boolean getGhost() {
+		return ghost;
+	}
+
+	public Boolean getPaused() {
+		return paused;
+	}
+
+	public String getDead() {
+		return dead;
+	}
+
+	public void setDead(String dead) {
+		this.dead = dead;
+	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
 	}
 	
 	

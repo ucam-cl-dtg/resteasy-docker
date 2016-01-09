@@ -1,6 +1,5 @@
 package uk.ac.cam.cl.dtg.teaching.docker.model;
 
-import java.util.Arrays;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -64,7 +63,20 @@ public class ContainerInfo {
 	@JsonProperty("ProcessLabel")
 	private String processLabel;
 	
-	
+	@JsonProperty("LogPath")
+	private String logPath;
+
+	@JsonProperty("AppArmorProfile")
+	private String appArmorProfile;
+
+	@JsonProperty("RestartCount")
+	private Integer restartCount;
+
+	@JsonProperty("UpdateDns")
+	private String updateDns;
+
+	@JsonProperty("AppliedVolumesFrom")
+	private String appliedVolumesFrom;
 	
 	public String getProcessLabel() {
 		return processLabel;
@@ -218,20 +230,45 @@ public class ContainerInfo {
 		this.hostConfig = hostConfig;
 	}
 
-	@Override
-	public String toString() {
-		return "ContainerInfo [id=" + id + ", created=" + created + ", path="
-				+ path + ", args=" + Arrays.toString(args) + ", config="
-				+ config + ", state=" + state + ", image=" + image
-				+ ", networkSettings=" + networkSettings + ", resolvConfPath="
-				+ resolvConfPath + ", hostnamePath=" + hostnamePath
-				+ ", hostsPath=" + hostsPath + ", name=" + name + ", driver="
-				+ driver + ", execDriver=" + execDriver + ", volumes="
-				+ volumes + ", volumesRW=" + volumesRW + ", hostConfig="
-				+ hostConfig + ", mountLabel=" + mountLabel + ", processLabel="
-				+ processLabel + "]";
+	public String getLogPath() {
+		return logPath;
 	}
 
+	public void setLogPath(String logPath) {
+		this.logPath = logPath;
+	}
+
+	public String getAppArmorProfile() {
+		return appArmorProfile;
+	}
+
+	public void setAppArmorProfile(String appArmorProfile) {
+		this.appArmorProfile = appArmorProfile;
+	}
+
+	public Integer getRestartCount() {
+		return restartCount;
+	}
+
+	public void setRestartCount(Integer restartCount) {
+		this.restartCount = restartCount;
+	}
+
+	public String getUpdateDns() {
+		return updateDns;
+	}
+
+	public void setUpdateDns(String updateDns) {
+		this.updateDns = updateDns;
+	}
+
+	public String getAppliedVolumesFrom() {
+		return appliedVolumesFrom;
+	}
+
+	public void setAppliedVolumesFrom(String appliedVolumesFrom) {
+		this.appliedVolumesFrom = appliedVolumesFrom;
+	}
 
 	
 }

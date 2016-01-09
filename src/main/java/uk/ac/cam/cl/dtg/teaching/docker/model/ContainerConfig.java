@@ -1,6 +1,5 @@
 package uk.ac.cam.cl.dtg.teaching.docker.model;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -85,7 +84,16 @@ public class ContainerConfig {
 
 	@JsonProperty("OnBuild")
 	private String onBuild;
+	
+	@JsonProperty("MacAddress")
+	private String macAddress;
 
+	/**
+	 * Custom metadata which you can add to a container.  Stored as key/value pairs
+	 */
+	@JsonProperty("Labels")
+	private Map<String,String> labels;
+	
 	public String getCpuset() {
 		return cpuset;
 	}
@@ -286,39 +294,20 @@ public class ContainerConfig {
 		this.onBuild = onBuild;
 	}
 
-	@Override
-	public String toString() {
-		return "ContainerConfig ["
-				+ (hostname != null ? "hostname=" + hostname + ", " : "")
-				+ (domainname != null ? "domainname=" + domainname + ", " : "")
-				+ (user != null ? "user=" + user + ", " : "")
-				+ (memory != null ? "memory=" + memory + ", " : "")
-				+ (memorySwap != null ? "memorySwap=" + memorySwap + ", " : "")
-				+ (cpuShares != null ? "cpuShares=" + cpuShares + ", " : "")
-				+ (cpuset != null ? "cpuset=" + cpuset + ", " : "")
-				+ (attachStdin != null ? "attachStdin=" + attachStdin + ", "
-						: "")
-				+ (attachStdout != null ? "attachStdout=" + attachStdout + ", "
-						: "")
-				+ (attachStderr != null ? "attachStderr=" + attachStderr + ", "
-						: "")
-				+ (tty != null ? "tty=" + tty + ", " : "")
-				+ (openStdin != null ? "openStdin=" + openStdin + ", " : "")
-				+ (stdinOnce != null ? "stdinOnce=" + stdinOnce + ", " : "")
-				+ (env != null ? "env=" + env + ", " : "")
-				+ (cmd != null ? "cmd=" + Arrays.toString(cmd) + ", " : "")
-				+ (image != null ? "image=" + image + ", " : "")
-				+ (volumes != null ? "volumes=" + volumes + ", " : "")
-				+ (volumesFrom != null ? "volumesFrom=" + volumesFrom + ", "
-						: "")
-				+ (workingDir != null ? "workingDir=" + workingDir + ", " : "")
-				+ (networkDisabled != null ? "networkDisabled="
-						+ networkDisabled + ", " : "")
-				+ (entryPoint != null ? "entryPoint=" + entryPoint + ", " : "")
-				+ (portSpecs != null ? "portSpecs=" + portSpecs + ", " : "")
-				+ (exposedPorts != null ? "exposedPorts=" + exposedPorts + ", "
-						: "") + (dns != null ? "dns=" + dns + ", " : "")
-				+ (onBuild != null ? "onBuild=" + onBuild : "") + "]";
+	public String getMacAddress() {
+		return macAddress;
+	}
+
+	public void setMacAddress(String macAddress) {
+		this.macAddress = macAddress;
+	}
+
+	public Map<String, String> getLabels() {
+		return labels;
+	}
+
+	public void setLabels(Map<String, String> labels) {
+		this.labels = labels;
 	}
 
 	
