@@ -28,6 +28,32 @@ public class DockerApiTest {
 	}
 	
 	@Test
+	public void testAttach() {
+		int num = 50;
+		Thread[] t = new Thread[num];
+		for(int i=0;i<num;i++) {
+			final int j = i;
+			t[i] = new Thread() {
+				@Override
+				public void run() {
+					try {
+						String response = DockerUtil.attachAndWait("read FOO; echo hello $FOO", j+"\n", "ubuntu:14.04",api);
+						Assert.assertEquals("hello "+j, response.trim());
+					} catch (Exception e) {
+						throw new Error(e);
+					}
+				}
+			};
+			t[i].start();
+		}
+		try {
+			for(int i=0;i<num;i++) {
+				t[i].join();
+			}
+		} catch (InterruptedException e) {}
+	}
+	
+	@Test
 	public void testVersion() {		
 		api.getVersion();
 	}

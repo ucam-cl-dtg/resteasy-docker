@@ -16,12 +16,16 @@ import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.jboss.resteasy.client.jaxrs.engines.ApacheHttpClient4Engine;
 
 import uk.ac.cam.cl.dtg.teaching.docker.api.DockerApi;
+import uk.ac.cam.cl.dtg.teaching.docker.api.DockerRestApi;
+import uk.ac.cam.cl.dtg.teaching.docker.api.DockerWsApiImpl;
 
 public class Docker {
-
+	
 	private static final int MAX_CONNECTIONS = 10;
 	private ResteasyWebTarget webTarget;
 
+	private DockerWsApiImpl wsApiImpl;
+	
 	public Docker(String hostname, int port) {
 		PoolingClientConnectionManager cm = new PoolingClientConnectionManager();
 		cm.setDefaultMaxPerRoute(MAX_CONNECTIONS);
@@ -31,33 +35,25 @@ public class Docker {
 		ResteasyClient c = new ResteasyClientBuilder()
 				.maxPooledPerRoute(MAX_CONNECTIONS).httpEngine(engine).build();
 		webTarget = c.target("http://" + hostname + ":" + port + "/v1.10");
+		wsApiImpl = new DockerWsApiImpl(hostname,port);
 	}
-
+	
+	
 	public DockerApi api() {
-		final DockerApi dockerProxy = webTarget.proxy(DockerApi.class);
-		return (DockerApi) Proxy.newProxyInstance(this.getClass()
+		final DockerRestApi dockerProxy = webTarget.proxy(DockerRestApi.class);
+		DockerApi proxy = (DockerApi)Proxy.newProxyInstance(this.getClass()
 				.getClassLoader(), new Class<?>[] { DockerApi.class },
 				new InvocationHandler() {
-					@SuppressWarnings("unused")
 					@Override
 					public Object invoke(Object proxy, Method method,
 							Object[] args) throws Throwable {
 						try {
-							long time = 0;
-							if (false) {
-								StringBuffer call = new StringBuffer(method.getName()+"(");
-								for(Object o : args) {
-									call.append(o+",");
-								}
-								call.append(")");
-								time = System.nanoTime();
-								System.err.println(time+"\t"+call); }
-							Object r = method.invoke(dockerProxy, args);
-							if (false) {
-								System.err.println(time+"\t"+r);
+							if (method.getName().equals("attach")) { 
+								return method.invoke(wsApiImpl, args);
 							}
-							return r;
-							
+							else {
+								return method.invoke(dockerProxy, args);
+							}
 						} catch (InvocationTargetException f) {
 							Throwable t = f.getCause();
 							if (t instanceof WebApplicationException) {
@@ -70,6 +66,7 @@ public class Docker {
 						}
 					}
 				});
+		return proxy;
 	}
 
 }

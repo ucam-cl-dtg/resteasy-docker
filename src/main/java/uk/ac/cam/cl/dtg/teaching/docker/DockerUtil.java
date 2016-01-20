@@ -1,11 +1,19 @@
 package uk.ac.cam.cl.dtg.teaching.docker;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
+
+import org.eclipse.jetty.websocket.api.Session;
+import org.eclipse.jetty.websocket.api.WebSocketListener;
 
 import uk.ac.cam.cl.dtg.teaching.docker.api.DockerApi;
 import uk.ac.cam.cl.dtg.teaching.docker.model.Container;
+import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerConfig;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerInfo;
+import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerResponse;
+import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerStartConfig;
 
 public class DockerUtil {
 
@@ -27,6 +35,12 @@ public class DockerUtil {
 		}
 	}
 
+	/**
+	 * Wait until a container is running
+	 * @param containerID
+	 * @param docker
+	 * @return
+	 */
 	public static boolean waitRunning(String containerID, DockerApi docker) {
 		for(int i=0;i<5;++i) {
 			ContainerInfo info = docker.inspectContainer(containerID);
@@ -39,5 +53,70 @@ public class DockerUtil {
 			}
 		}
 		return false;
+	}
+	
+
+	
+	
+	private static class AttachListener implements WebSocketListener {
+		private StringBuffer output;
+		private String data;
+		
+		public AttachListener(StringBuffer output, String data) {
+			this.output = output;
+			this.data = data;
+		}
+
+		@Override
+		public void onWebSocketClose(int statusCode, String reason) {			
+		}
+
+		@Override
+		public void onWebSocketConnect(Session session) {
+			try {
+				session.getRemote().sendString(data);
+			} catch (IOException e) {
+				throw new RuntimeException("Failed to send input data to container",e);
+			}
+		}
+
+		@Override
+		public void onWebSocketError(Throwable cause) {
+			throw new RuntimeException("WebSocket error attaching to container",cause);
+		}
+
+		@Override
+		public void onWebSocketBinary(byte[] payload, int offset, int len) {
+			throw new RuntimeException("Unexpected binary data from container");
+		}
+
+		@Override
+		public void onWebSocketText(String message) {
+			output.append(message);
+		}		
+	}
+		
+	public static String attachAndWait(String cmd, 
+			String stdin, 
+			String image,
+			DockerApi docker) {
+		String name = UUID.randomUUID().toString();
+		ContainerConfig config = new ContainerConfig();
+		config.setOpenStdin(true);
+		config.setCmd(new String[] { "/bin/bash","-c",cmd});
+		config.setImage(image);
+		StringBuffer output = new StringBuffer();
+		ContainerResponse createResponse = docker.createContainer(name, config);
+		try {
+			ContainerStartConfig startConfig = new ContainerStartConfig();
+			docker.startContainer(createResponse.getId(), startConfig);
+			AttachListener l = new AttachListener(output,stdin);
+			docker.attach(createResponse.getId(),true,true,true,true,true,l);
+			docker.waitContainer(createResponse.getId());
+		}
+		finally {
+			docker.deleteContainer(createResponse.getId(), true, false);
+		}
+		return output.toString();
 	}
 }
