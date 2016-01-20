@@ -107,7 +107,7 @@ public class DockerApiTest {
 	private CreatedContainer createContainer() {
 		String name = UUID.randomUUID().toString();
 		ContainerConfig config = new ContainerConfig();
-		config.setCmd(new String[] { "/bin/echo hello" });
+		config.setCmd(new String[] { "/bin/echo","hello" });
 		config.setImage("ubuntu:14.04");
 		return new CreatedContainer(name,api.createContainer(name, config));
 	}
