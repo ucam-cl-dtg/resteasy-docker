@@ -26,7 +26,7 @@ public class ContainerState {
 	private Boolean ghost;
 	
 	@JsonProperty("Restarting")
-	private String restarting;
+	private boolean restarting;
 
 	@JsonProperty("OOMKilled")
 	private String oomKilled;
@@ -102,11 +102,11 @@ public class ContainerState {
 		this.ghost = ghost;
 	}
 
-	public String getRestarting() {
+	public boolean isRestarting() {
 		return restarting;
 	}
 
-	public void setRestarting(String restarting) {
+	public void setRestarting(boolean restarting) {
 		this.restarting = restarting;
 	}
 
@@ -144,6 +144,13 @@ public class ContainerState {
 
 	public void setError(String error) {
 		this.error = error;
+	}
+
+	@Override
+	public String toString() {
+		return "ContainerState [running=" + running + ", pid=" + pid + ", exitCode=" + exitCode + ", startedAt="
+				+ startedAt + ", finishedAt=" + finishedAt + ", ghost=" + ghost + ", restarting=" + restarting
+				+ ", oomKilled=" + oomKilled + ", dead=" + dead + ", paused=" + paused + ", error=" + error + "]";
 	}
 	
 	

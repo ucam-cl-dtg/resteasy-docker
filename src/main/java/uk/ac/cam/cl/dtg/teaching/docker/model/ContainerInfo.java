@@ -1,5 +1,6 @@
 package uk.ac.cam.cl.dtg.teaching.docker.model;
 
+import java.util.Arrays;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -269,6 +270,5 @@ public class ContainerInfo {
 	public void setAppliedVolumesFrom(String appliedVolumesFrom) {
 		this.appliedVolumesFrom = appliedVolumesFrom;
 	}
-
 	
 }

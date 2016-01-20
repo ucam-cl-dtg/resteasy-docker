@@ -1,5 +1,7 @@
 package uk.ac.cam.cl.dtg.teaching.docker.model;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Image {
@@ -21,6 +23,28 @@ public class Image {
 	
 	@JsonProperty("VirtualSize")
 	private Long virtualSize;
+
+	@JsonProperty("Labels")
+	private Map<String,String> lables;
+		
+	@JsonProperty("RepoDigests")
+	private String[] repoDigests;	
+	
+	public String[] getRepoDigests() {
+		return repoDigests;
+	}
+
+	public void setRepoDigests(String[] repoDigests) {
+		this.repoDigests = repoDigests;
+	}
+
+	public Map<String,String> getLables() {
+		return lables;
+	}
+
+	public void setLables(Map<String,String> lables) {
+		this.lables = lables;
+	}
 
 	public Long getCreated() {
 		return created;
