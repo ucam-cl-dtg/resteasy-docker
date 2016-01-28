@@ -2,6 +2,7 @@ package uk.ac.cam.cl.dtg.teaching.docker;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -133,7 +134,7 @@ public class DockerApiTest {
 	private CreatedContainer createContainer() {
 		String name = UUID.randomUUID().toString();
 		ContainerConfig config = new ContainerConfig();
-		config.setCmd(new String[] { "/bin/echo","hello" });
+		config.setCmd(Arrays.asList("/bin/echo","hello"));
 		config.setImage("ubuntu:14.04");
 		return new CreatedContainer(name,api.createContainer(name, config));
 	}
