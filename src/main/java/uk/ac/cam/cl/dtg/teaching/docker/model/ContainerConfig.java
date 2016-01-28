@@ -7,99 +7,148 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ContainerConfig {
 
+	/**
+	 * A string value containing the hostname to use for the container.
+	 */
 	@JsonProperty("Hostname")
 	private String hostname = "";
 	
+	/**
+	 * A string value containing the domain name to use for the container.
+	 */
 	@JsonProperty("Domainname")
 	private String domainname = "";
 	
+	/**
+	 * A string value specifying the user inside the container.
+	 */
 	@JsonProperty("User")
 	private String user = "";
 
-	@JsonProperty("Memory")
-	private Integer memory;
-
-	@JsonProperty("MemorySwap")
-	private Integer memorySwap;
-	
-	@JsonProperty("CpuShares")
-	private Integer cpuShares;
-	
 	/**
-	 * Comma separated list of CPUs (by number) on which this guest is allowed to run.  Use an empty string for no restriction.  
+	 *  Boolean value, attaches to stdin.
 	 */
-	@JsonProperty("Cpuset")
-	private String cpuset = "";
-	
 	@JsonProperty("AttachStdin")
 	private Boolean attachStdin;
 	
+	/**
+	 * Boolean value, attaches to stdout.
+	 */
 	@JsonProperty("AttachStdout")
 	private Boolean attachStdout;
 	
+	/**
+	 * Boolean value, attaches to stderr.
+	 */
 	@JsonProperty("AttachStderr")
 	private Boolean attachStderr;
 	
+	/**
+	 *  Boolean value, Attach standard streams to a tty, including stdin if it is not closed.
+	 */
 	@JsonProperty("Tty")
 	private Boolean tty;
 	
+	/**
+	 * Boolean value, opens stdin,
+	 */
 	@JsonProperty("OpenStdin")
 	private Boolean openStdin;
 		
+	/**
+	 * Boolean value, close stdin after the 1 attached client disconnects.
+	 */
 	@JsonProperty("StdinOnce")
 	private Boolean stdinOnce;
 	
+	/**
+	 * A list of environment variables in the form of ["VAR=value"[,"VAR2=value2"]]
+	 */
 	@JsonProperty("Env")
 	private List<String> env;
-	
-	@JsonProperty("Cmd")
-	private String[] cmd;
-	
-	@JsonProperty("Image")
-	private String image;
-	
-	@JsonProperty("Volumes")
-	private Map<String,Map<String,String>> volumes;
-	
-	@JsonProperty("VolumesFrom")
-	private String volumesFrom = "";
-	
-	@JsonProperty("WorkingDir")
-	private String workingDir = "";
-	
-	@JsonProperty("NetworkDisabled")
-	private Boolean networkDisabled;
 
+	/**
+	 * Command to run specified as a string or an array of strings.
+	 */
+	@JsonProperty("Cmd")
+	private List<String> cmd;
+
+	/**
+	 * Set the entry point for the container as a string or an array of strings.
+	 */
 	@JsonProperty("Entrypoint")
 	private String entryPoint;
 	
-	@JsonProperty("PortSpecs")
-	private String portSpecs;
+	/**
+	 * A string specifying the image name to use for the container.
+	 */
+	@JsonProperty("Image")
+	private String image;
 	
-	@JsonProperty("ExposedPorts")
-	private Map<String,?> exposedPorts;
-	
-	@JsonProperty("Dns")
-	private String dns;
-
-	@JsonProperty("OnBuild")
-	private String onBuild;
-	
-	@JsonProperty("MacAddress")
-	private String macAddress;
-
 	/**
 	 * Custom metadata which you can add to a container.  Stored as key/value pairs
 	 */
 	@JsonProperty("Labels")
 	private Map<String,String> labels;
+
+	/**
+	 * An array of mount points in the container.
+	 */
+	@JsonProperty("Mounts")
+	private List<ContainerMount> mounts;
 	
-	public String getCpuset() {
-		return cpuset;
+	/**
+	 * A string specifying the working directory for commands to run in.
+	 */
+	@JsonProperty("WorkingDir")
+	private String workingDir = "";
+	
+	/**
+	 * Boolean value, when true disables networking for the container
+	 */
+	@JsonProperty("NetworkDisabled")
+	private Boolean networkDisabled;
+	
+	@JsonProperty("MacAddress")
+	private String macAddress;
+	
+	/**
+	 * An object mapping ports to an empty object in the form of: "ExposedPorts": { "<port>/<tcp|udp>: {}" }
+	 */
+	@JsonProperty("ExposedPorts")
+	private Map<String,?> exposedPorts;
+
+	/**
+	 *  Signal to stop a container as a string or unsigned integer. SIGTERM by default.
+	 */
+	@JsonProperty("StopSignal")
+	private String stopSignal;
+	
+	@JsonProperty("HostConfig")
+	private ContainerHostConfig hostConfig;
+
+	@JsonProperty("Volumes")
+	private List<String> volumes;
+	
+	@JsonProperty("OnBuild")
+	private String onBuild;
+	
+	
+	
+	public String getOnBuild() {
+		return onBuild;
 	}
 
-	public void setCpuset(String cpuset) {
-		this.cpuset = cpuset;
+	public void setOnBuild(String onBuild) {
+		this.onBuild = onBuild;
+	}
+
+	public List<String> getVolumes() {
+		return volumes;
+	}
+
+	public void setVolumes(List<String> volumes) {
+		this.volumes = volumes;
 	}
 
 	public String getHostname() {
@@ -124,30 +173,6 @@ public class ContainerConfig {
 
 	public void setUser(String user) {
 		this.user = user;
-	}
-
-	public Integer getMemory() {
-		return memory;
-	}
-
-	public void setMemory(Integer memory) {
-		this.memory = memory;
-	}
-
-	public Integer getMemorySwap() {
-		return memorySwap;
-	}
-
-	public void setMemorySwap(Integer memorySwap) {
-		this.memorySwap = memorySwap;
-	}
-
-	public Integer getCpuShares() {
-		return cpuShares;
-	}
-
-	public void setCpuShares(Integer cpuShares) {
-		this.cpuShares = cpuShares;
 	}
 
 	public Boolean getAttachStdin() {
@@ -206,12 +231,20 @@ public class ContainerConfig {
 		this.env = env;
 	}
 
-	public String[] getCmd() {
+	public List<String> getCmd() {
 		return cmd;
 	}
 
-	public void setCmd(String[] cmd) {
+	public void setCmd(List<String> cmd) {
 		this.cmd = cmd;
+	}
+
+	public String getEntryPoint() {
+		return entryPoint;
+	}
+
+	public void setEntryPoint(String entryPoint) {
+		this.entryPoint = entryPoint;
 	}
 
 	public String getImage() {
@@ -222,20 +255,20 @@ public class ContainerConfig {
 		this.image = image;
 	}
 
-	public Map<String, Map<String, String>> getVolumes() {
-		return volumes;
+	public Map<String, String> getLabels() {
+		return labels;
 	}
 
-	public void setVolumes(Map<String, Map<String, String>> volumes) {
-		this.volumes = volumes;
+	public void setLabels(Map<String, String> labels) {
+		this.labels = labels;
 	}
 
-	public String getVolumesFrom() {
-		return volumesFrom;
+	public List<ContainerMount> getMounts() {
+		return mounts;
 	}
 
-	public void setVolumesFrom(String volumesFrom) {
-		this.volumesFrom = volumesFrom;
+	public void setMounts(List<ContainerMount> mounts) {
+		this.mounts = mounts;
 	}
 
 	public String getWorkingDir() {
@@ -254,20 +287,12 @@ public class ContainerConfig {
 		this.networkDisabled = networkDisabled;
 	}
 
-	public String getEntryPoint() {
-		return entryPoint;
+	public String getMacAddress() {
+		return macAddress;
 	}
 
-	public void setEntryPoint(String entryPoint) {
-		this.entryPoint = entryPoint;
-	}
-
-	public String getPortSpecs() {
-		return portSpecs;
-	}
-
-	public void setPortSpecs(String portSpecs) {
-		this.portSpecs = portSpecs;
+	public void setMacAddress(String macAddress) {
+		this.macAddress = macAddress;
 	}
 
 	public Map<String, ?> getExposedPorts() {
@@ -278,37 +303,21 @@ public class ContainerConfig {
 		this.exposedPorts = exposedPorts;
 	}
 
-	public String getDns() {
-		return dns;
+	public String getStopSignal() {
+		return stopSignal;
 	}
 
-	public void setDns(String dns) {
-		this.dns = dns;
+	public void setStopSignal(String stopSignal) {
+		this.stopSignal = stopSignal;
 	}
 
-	public String getOnBuild() {
-		return onBuild;
+	public ContainerHostConfig getHostConfig() {
+		return hostConfig;
 	}
 
-	public void setOnBuild(String onBuild) {
-		this.onBuild = onBuild;
+	public void setHostConfig(ContainerHostConfig hostConfig) {
+		this.hostConfig = hostConfig;
 	}
-
-	public String getMacAddress() {
-		return macAddress;
-	}
-
-	public void setMacAddress(String macAddress) {
-		this.macAddress = macAddress;
-	}
-
-	public Map<String, String> getLabels() {
-		return labels;
-	}
-
-	public void setLabels(Map<String, String> labels) {
-		this.labels = labels;
-	}
-
+	
 	
 }

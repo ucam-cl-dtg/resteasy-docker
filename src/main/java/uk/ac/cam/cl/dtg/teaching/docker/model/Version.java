@@ -4,28 +4,51 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Version {
 
-	@JsonProperty("ApiVersion")
-	private String apiVersion;
-	
 	@JsonProperty("Version")
 	private String version;
-	
-	@JsonProperty("GitCommit")
-	private String gitCommit;
-	
-	@JsonProperty("GoVersion")
-	private String goVersion;
 
-	@JsonProperty("Arch")
-	private String arch;
+	@JsonProperty("Os")
+	private String os;
 	
 	@JsonProperty("KernelVersion")
 	private String kernelVersion;
-	
-	@JsonProperty("Os")
-	private String os;
 
+	@JsonProperty("GoVersion")
+	private String goVersion;
+
+	@JsonProperty("GitCommit")
+	private String gitCommit;
+
+	@JsonProperty("Arch")
+	private String arch;
+		
+	@JsonProperty("ApiVersion")
+	private String apiVersion;
 	
+	@JsonProperty("Experimental")
+	private boolean experimental;
+
+	@JsonProperty("BuildTime")
+	private String buildTime;
+	
+	
+	
+	public String getBuildTime() {
+		return buildTime;
+	}
+
+	public void setBuildTime(String buildTime) {
+		this.buildTime = buildTime;
+	}
+
+	public boolean isExperimental() {
+		return experimental;
+	}
+
+	public void setExperimental(boolean experimental) {
+		this.experimental = experimental;
+	}
+
 	public String getOs() {
 		return os;
 	}

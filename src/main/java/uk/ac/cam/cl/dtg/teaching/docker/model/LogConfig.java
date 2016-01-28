@@ -1,24 +1,33 @@
 package uk.ac.cam.cl.dtg.teaching.docker.model;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LogConfig {
 
 	@JsonProperty("Config")
-	private String config;
+	private Map<String,String> config;
 	
+	
+	/**
+	 * Available types: json-file, syslog, journald, gelf, awslogs, none. json-file
+	 */
 	@JsonProperty("Type")
 	private String type;
 	
 	public LogConfig() {}
 
-	public String getConfig() {
+	
+	public Map<String, String> getConfig() {
 		return config;
 	}
 
-	public void setConfig(String config) {
+	public void setConfig(Map<String, String> config) {
 		this.config = config;
 	}
+
+
 
 	public String getType() {
 		return type;

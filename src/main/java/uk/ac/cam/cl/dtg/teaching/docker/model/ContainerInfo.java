@@ -1,129 +1,103 @@
 package uk.ac.cam.cl.dtg.teaching.docker.model;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ContainerInfo {
 
-	@JsonProperty("ID")
-	private String id;
-	
-	@JsonProperty("Created")
-	private String created;
-	
-	@JsonProperty("Path")
-	private String path;
-	
+	@JsonProperty("AppArmorProfile")
+	private String appArmorProfile;
+
 	@JsonProperty("Args")
-	private String[] args;
-	
+	private List<String> args;
+
 	@JsonProperty("Config")
 	private ContainerConfig config;
-	
-	@JsonProperty("State")
-	private ContainerState state;
-	
-	@JsonProperty("Image")
-	private String image;
-	
-	@JsonProperty("NetworkSettings")
-	private ContainerNetworkSettings networkSettings;
-	
-	@JsonProperty("ResolvConfPath")
-	private String resolvConfPath;
-	
+
+	@JsonProperty("Created")
+	private String created;
+
+	@JsonProperty("Driver")
+	private String driver;
+
+	@JsonProperty("ExecDriver")
+	private String execDriver;
+
+	@JsonProperty("ExecIDs")
+	private List<String> execIDs;
+
+	@JsonProperty("HostConfig")
+	private ContainerHostConfig hostConfig;
+
 	@JsonProperty("HostnamePath")
 	private String hostnamePath;
 	
 	@JsonProperty("HostsPath")
 	private String hostsPath;
+
+	@JsonProperty("LogPath")
+	private String logPath;
+		
+	@JsonProperty("Id")
+	private String id;
+	
+	@JsonProperty("Image")
+	private String image;
+	
+	@JsonProperty("MountLabel")
+	private String mountLabel;
 	
 	@JsonProperty("Name")
 	private String name;
-	
-	@JsonProperty("Driver")
-	private String driver;
-	
-	@JsonProperty("ExecDriver")
-	private String execDriver;
-	
-	@JsonProperty("Volumes")
-	private Map<String,String> volumes;
-	
-	@JsonProperty("VolumesRW")
-	private Map<String,?> volumesRW;
-	
-	@JsonProperty("HostConfig")
-	private ContainerHostConfig hostConfig;
 
-	@JsonProperty("MountLabel")
-	private String mountLabel;
+	@JsonProperty("NetworkSettings")
+	private ContainerNetworkSettings networkSettings;
+	
+	@JsonProperty("Path")
+	private String path;
 	
 	@JsonProperty("ProcessLabel")
 	private String processLabel;
 	
-	@JsonProperty("LogPath")
-	private String logPath;
-
-	@JsonProperty("AppArmorProfile")
-	private String appArmorProfile;
+	@JsonProperty("ResolvConfPath")
+	private String resolvConfPath;
 
 	@JsonProperty("RestartCount")
 	private Integer restartCount;
-
-	@JsonProperty("UpdateDns")
-	private String updateDns;
-
-	@JsonProperty("AppliedVolumesFrom")
-	private String appliedVolumesFrom;
+		
+	@JsonProperty("State")
+	private ContainerState state;
 	
-	public String getProcessLabel() {
-		return processLabel;
+	@JsonProperty("Mounts")
+	private List<ContainerMount> mounts;
+
+	@JsonProperty("GraphDriver")
+	private Map<String,String> graphDriver;
+	
+	
+	public Map<String, String> getGraphDriver() {
+		return graphDriver;
 	}
 
-	public void setProcessLabel(String processLabel) {
-		this.processLabel = processLabel;
+	public void setGraphDriver(Map<String, String> graphDriver) {
+		this.graphDriver = graphDriver;
 	}
 
-	public String getMountLabel() {
-		return mountLabel;
+	public String getAppArmorProfile() {
+		return appArmorProfile;
 	}
 
-	public void setMountLabel(String mountLabel) {
-		this.mountLabel = mountLabel;
+	public void setAppArmorProfile(String appArmorProfile) {
+		this.appArmorProfile = appArmorProfile;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getCreated() {
-		return created;
-	}
-
-	public void setCreated(String created) {
-		this.created = created;
-	}
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-	public String[] getArgs() {
+	public List<String> getArgs() {
 		return args;
 	}
 
-	public void setArgs(String[] args) {
+	public void setArgs(List<String> args) {
 		this.args = args;
 	}
 
@@ -135,60 +109,12 @@ public class ContainerInfo {
 		this.config = config;
 	}
 
-	public ContainerState getState() {
-		return state;
+	public String getCreated() {
+		return created;
 	}
 
-	public void setState(ContainerState state) {
-		this.state = state;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	public ContainerNetworkSettings getNetworkSettings() {
-		return networkSettings;
-	}
-
-	public void setNetworkSettings(ContainerNetworkSettings networkSettings) {
-		this.networkSettings = networkSettings;
-	}
-
-	public String getResolvConfPath() {
-		return resolvConfPath;
-	}
-
-	public void setResolvConfPath(String resolvConfPath) {
-		this.resolvConfPath = resolvConfPath;
-	}
-
-	public String getHostnamePath() {
-		return hostnamePath;
-	}
-
-	public void setHostnamePath(String hostnamePath) {
-		this.hostnamePath = hostnamePath;
-	}
-
-	public String getHostsPath() {
-		return hostsPath;
-	}
-
-	public void setHostsPath(String hostsPath) {
-		this.hostsPath = hostsPath;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setCreated(String created) {
+		this.created = created;
 	}
 
 	public String getDriver() {
@@ -207,20 +133,12 @@ public class ContainerInfo {
 		this.execDriver = execDriver;
 	}
 
-	public Map<String, String> getVolumes() {
-		return volumes;
+	public List<String> getExecIDs() {
+		return execIDs;
 	}
 
-	public void setVolumes(Map<String, String> volumes) {
-		this.volumes = volumes;
-	}
-
-	public Map<String, ?> getVolumesRW() {
-		return volumesRW;
-	}
-
-	public void setVolumesRW(Map<String, ?> volumesRW) {
-		this.volumesRW = volumesRW;
+	public void setExecIDs(List<String> execIDs) {
+		this.execIDs = execIDs;
 	}
 
 	public ContainerHostConfig getHostConfig() {
@@ -231,6 +149,22 @@ public class ContainerInfo {
 		this.hostConfig = hostConfig;
 	}
 
+	public String getHostnamePath() {
+		return hostnamePath;
+	}
+
+	public void setHostnamePath(String hostnamePath) {
+		this.hostnamePath = hostnamePath;
+	}
+
+	public String getHostsPath() {
+		return hostsPath;
+	}
+
+	public void setHostsPath(String hostsPath) {
+		this.hostsPath = hostsPath;
+	}
+
 	public String getLogPath() {
 		return logPath;
 	}
@@ -239,12 +173,68 @@ public class ContainerInfo {
 		this.logPath = logPath;
 	}
 
-	public String getAppArmorProfile() {
-		return appArmorProfile;
+	public String getId() {
+		return id;
 	}
 
-	public void setAppArmorProfile(String appArmorProfile) {
-		this.appArmorProfile = appArmorProfile;
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getMountLabel() {
+		return mountLabel;
+	}
+
+	public void setMountLabel(String mountLabel) {
+		this.mountLabel = mountLabel;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public ContainerNetworkSettings getNetworkSettings() {
+		return networkSettings;
+	}
+
+	public void setNetworkSettings(ContainerNetworkSettings networkSettings) {
+		this.networkSettings = networkSettings;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public String getProcessLabel() {
+		return processLabel;
+	}
+
+	public void setProcessLabel(String processLabel) {
+		this.processLabel = processLabel;
+	}
+
+	public String getResolvConfPath() {
+		return resolvConfPath;
+	}
+
+	public void setResolvConfPath(String resolvConfPath) {
+		this.resolvConfPath = resolvConfPath;
 	}
 
 	public Integer getRestartCount() {
@@ -255,20 +245,22 @@ public class ContainerInfo {
 		this.restartCount = restartCount;
 	}
 
-	public String getUpdateDns() {
-		return updateDns;
+	public ContainerState getState() {
+		return state;
 	}
 
-	public void setUpdateDns(String updateDns) {
-		this.updateDns = updateDns;
+	public void setState(ContainerState state) {
+		this.state = state;
 	}
 
-	public String getAppliedVolumesFrom() {
-		return appliedVolumesFrom;
+	public List<ContainerMount> getMounts() {
+		return mounts;
 	}
 
-	public void setAppliedVolumesFrom(String appliedVolumesFrom) {
-		this.appliedVolumesFrom = appliedVolumesFrom;
+	public void setMounts(List<ContainerMount> mounts) {
+		this.mounts = mounts;
 	}
+	
+
 	
 }

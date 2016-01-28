@@ -34,7 +34,7 @@ public class Docker {
 		ApacheHttpClient4Engine engine = new ApacheHttpClient4Engine(httpClient);
 		ResteasyClient c = new ResteasyClientBuilder()
 				.maxPooledPerRoute(MAX_CONNECTIONS).httpEngine(engine).build();
-		webTarget = c.target("http://" + hostname + ":" + port + "/v1.10");
+		webTarget = c.target("http://" + hostname + ":" + port + "/v1.21");
 		wsApiImpl = new DockerWsApiImpl(hostname,port);
 	}
 	
