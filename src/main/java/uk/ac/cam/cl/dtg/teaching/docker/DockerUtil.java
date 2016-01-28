@@ -2,6 +2,7 @@ package uk.ac.cam.cl.dtg.teaching.docker;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,7 +31,7 @@ public class DockerUtil {
 		for(Container container : containers) {
 			String[] names = container.getNames();
 			if (names != null && names.length > 0 && names[0].equals("/"+name)) {
-				docker.deleteContainer(container.getId(), true, true);
+				DockerPatch.deleteContainer(docker,container.getId(), true, true);
 			}
 		}
 	}
@@ -103,7 +104,7 @@ public class DockerUtil {
 		String name = UUID.randomUUID().toString();
 		ContainerConfig config = new ContainerConfig();
 		config.setOpenStdin(true);
-		config.setCmd(new String[] { "/bin/bash","-c",cmd});
+		config.setCmd(Arrays.asList("/bin/bash","-c",cmd));
 		config.setImage(image);
 		StringBuffer output = new StringBuffer();
 		ContainerResponse createResponse = docker.createContainer(name, config);
@@ -115,7 +116,7 @@ public class DockerUtil {
 			docker.waitContainer(createResponse.getId());
 		}
 		finally {
-			docker.deleteContainer(createResponse.getId(), true, false);
+			DockerPatch.deleteContainer(docker,createResponse.getId(), true, true);
 		}
 		return output.toString();
 	}
