@@ -128,8 +128,16 @@ public class ContainerConfig {
 	private ContainerHostConfig hostConfig;
 
 	@JsonProperty("Volumes")
-	private List<String> volumes;
+	private Map<String,Map<String,String>> volumes;
 	
+	public Map<String, Map<String, String>> getVolumes() {
+		return volumes;
+	}
+
+	public void setVolumes(Map<String, Map<String, String>> volumes) {
+		this.volumes = volumes;
+	}
+
 	@JsonProperty("OnBuild")
 	private String onBuild;
 	
@@ -141,14 +149,6 @@ public class ContainerConfig {
 
 	public void setOnBuild(String onBuild) {
 		this.onBuild = onBuild;
-	}
-
-	public List<String> getVolumes() {
-		return volumes;
-	}
-
-	public void setVolumes(List<String> volumes) {
-		this.volumes = volumes;
 	}
 
 	public String getHostname() {
