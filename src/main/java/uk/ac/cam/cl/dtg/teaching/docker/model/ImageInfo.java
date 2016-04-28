@@ -55,6 +55,18 @@ public class ImageInfo {
 		@JsonProperty("Config")
 		private ContainerConfig config;
 
+		@JsonProperty("RootFS")
+		private RootFS rootFS;
+			
+		
+		public RootFS getRootFS() {
+			return rootFS;
+		}
+
+		public void setRootFS(RootFS rootFS) {
+			this.rootFS = rootFS;
+		}
+
 		public String getId() {
 			return id;
 		}

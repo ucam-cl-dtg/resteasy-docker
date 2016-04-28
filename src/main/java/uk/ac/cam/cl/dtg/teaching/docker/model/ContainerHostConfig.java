@@ -246,7 +246,216 @@ public class ContainerHostConfig {
 	@JsonProperty("ConsoleSize")
 	private List<String> consoleSize;
 	
+	@JsonProperty("AutoRemove")
+	private Boolean autoRemove;
+	
+	@JsonProperty("Cgroup")
+	private String cgroup;
+	
+	@JsonProperty("OomScoreAdj")
+	private String oomScoreAdj;
+	
+	@JsonProperty("StorageOpt")
+	private String storageOpt;
+	
+	@JsonProperty("UsernsMode")
+	private String usernsMode;
+	
+	@JsonProperty("ShmSize")
+	private String shmSize;
+	
+	@JsonProperty("Isolation")
+	private String isolation;
+	
+	@JsonProperty("BlkioWeightDevice")
+	private String blkioWeightDevice;
+	
+	@JsonProperty("BlkioDeviceReadBps")
+	private String blkioDeviceReadBps;
 
+	@JsonProperty("BlkioDeviceWriteBps")
+	private String blkioDeviceWriteBps;
+
+	@JsonProperty("BlkioDeviceReadIOps")
+	private String blkioDeviceReadIOps;
+
+	@JsonProperty("BlkioDeviceWriteIOps")
+	private String blkioDeviceWriteIOps;
+
+	@JsonProperty("DiskQuota")
+	private String diskQuota;
+	
+	@JsonProperty("PidsLimit")
+	private Integer pidsLimit;
+	
+	@JsonProperty("CpuCount")
+	private Integer cpuCount;
+	
+	@JsonProperty("CpuPercent")
+	private Integer cpuPercent;	
+	
+	@JsonProperty("BlkioIOps")
+	private String blkioIOps;
+
+	@JsonProperty("BlkioBps")
+	private String blkioBps;
+
+	@JsonProperty("SandboxSize")
+	private Integer sandboxSize;	
+	
+	
+	public Integer getSandboxSize() {
+		return sandboxSize;
+	}
+
+	public void setSandboxSize(Integer sandboxSize) {
+		this.sandboxSize = sandboxSize;
+	}
+
+	public String getBlkioBps() {
+		return blkioBps;
+	}
+
+	public void setBlkioBps(String blkioBps) {
+		this.blkioBps = blkioBps;
+	}
+
+	public String getBlkioIOps() {
+		return blkioIOps;
+	}
+
+	public void setBlkioIOps(String blkioIOps) {
+		this.blkioIOps = blkioIOps;
+	}
+
+	public Integer getCpuPercent() {
+		return cpuPercent;
+	}
+
+	public void setCpuPercent(Integer cpuPercent) {
+		this.cpuPercent = cpuPercent;
+	}
+
+	public Integer getPidsLimit() {
+		return pidsLimit;
+	}
+
+	public void setPidsLimit(Integer pidsLimit) {
+		this.pidsLimit = pidsLimit;
+	}
+
+	public Integer getCpuCount() {
+		return cpuCount;
+	}
+
+	public void setCpuCount(Integer cpuCount) {
+		this.cpuCount = cpuCount;
+	}
+
+	public String getDiskQuota() {
+		return diskQuota;
+	}
+
+	public void setDiskQuota(String diskQuota) {
+		this.diskQuota = diskQuota;
+	}
+
+	public String getBlkioDeviceWriteBps() {
+		return blkioDeviceWriteBps;
+	}
+
+	public void setBlkioDeviceWriteBps(String blkioDeviceWriteBps) {
+		this.blkioDeviceWriteBps = blkioDeviceWriteBps;
+	}
+
+	public String getBlkioDeviceReadIOps() {
+		return blkioDeviceReadIOps;
+	}
+
+	public void setBlkioDeviceReadIOps(String blkioDeviceReadIOps) {
+		this.blkioDeviceReadIOps = blkioDeviceReadIOps;
+	}
+
+	public String getBlkioDeviceWriteIOps() {
+		return blkioDeviceWriteIOps;
+	}
+
+	public void setBlkioDeviceWriteIOps(String blkioDeviceWriteIOps) {
+		this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
+	}
+
+	public String getBlkioDeviceReadBps() {
+		return blkioDeviceReadBps;
+	}
+
+	public void setBlkioDeviceReadBps(String blkioDeviceReadBps) {
+		this.blkioDeviceReadBps = blkioDeviceReadBps;
+	}
+
+	public String getBlkioWeightDevice() {
+		return blkioWeightDevice;
+	}
+
+	public void setBlkioWeightDevice(String blkioWeightDevice) {
+		this.blkioWeightDevice = blkioWeightDevice;
+	}
+
+	public String getIsolation() {
+		return isolation;
+	}
+
+	public void setIsolation(String isolation) {
+		this.isolation = isolation;
+	}
+
+	public String getShmSize() {
+		return shmSize;
+	}
+
+	public void setShmSize(String shmSize) {
+		this.shmSize = shmSize;
+	}
+
+	public String getUsernsMode() {
+		return usernsMode;
+	}
+
+	public void setUsernsMode(String usernsMode) {
+		this.usernsMode = usernsMode;
+	}
+
+	public String getStorageOpt() {
+		return storageOpt;
+	}
+
+	public void setStorageOpt(String storageOpt) {
+		this.storageOpt = storageOpt;
+	}
+
+	public String getOomScoreAdj() {
+		return oomScoreAdj;
+	}
+
+	public void setOomScoreAdj(String oomScoreAdj) {
+		this.oomScoreAdj = oomScoreAdj;
+	}
+
+	public String getCgroup() {
+		return cgroup;
+	}
+
+	public void setCgroup(String cgroup) {
+		this.cgroup = cgroup;
+	}
+
+	public Boolean getAutoRemove() {
+		return autoRemove;
+	}
+
+	public void setAutoRemove(Boolean autoRemove) {
+		this.autoRemove = autoRemove;
+	}	
+	
 	public List<String> getConsoleSize() {
 		return consoleSize;
 	}

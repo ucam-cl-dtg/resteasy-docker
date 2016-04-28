@@ -76,7 +76,7 @@ public class ContainerInfo {
 	@JsonProperty("GraphDriver")
 	private Map<String,String> graphDriver;
 	
-	
+
 	public Map<String, String> getGraphDriver() {
 		return graphDriver;
 	}
