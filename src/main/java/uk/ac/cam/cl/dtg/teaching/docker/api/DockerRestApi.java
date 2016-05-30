@@ -89,6 +89,15 @@ public interface DockerRestApi {
 	@Path("/images/{name}/json")
 	public ImageInfo inspectImage(@PathParam("name") String id);
 
+	/**
+	 * Kill a container. 
+	 * @param id of container to kill
+	 * @param signal either a string (SIGKILL) or a number (9)
+	 */
+	@POST
+	@Path("/containers/{id}/kill")
+	public void killContainer(@PathParam("id") String id, @QueryParam("signal") String signal);
+	
 }
 
 
