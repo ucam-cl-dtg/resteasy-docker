@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ContainerMount {
 
+	@JsonProperty("Name")
+	private String name;
+	
 	@JsonProperty("Source")
 	private String source;
 	
@@ -18,6 +21,37 @@ public class ContainerMount {
 	
 	@JsonProperty("RW")
 	private Boolean rw;
+
+	@JsonProperty("Driver")
+	private String driver;
+		
+	@JsonProperty("Propagation")
+	private String propagation;
+	
+	
+	public String getPropagation() {
+		return propagation;
+	}
+
+	public void setPropagation(String propagation) {
+		this.propagation = propagation;
+	}
+
+	public String getDriver() {
+		return driver;
+	}
+
+	public void setDriver(String driver) {
+		this.driver = driver;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getSource() {
 		return source;
