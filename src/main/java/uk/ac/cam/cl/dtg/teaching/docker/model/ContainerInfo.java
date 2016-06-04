@@ -74,10 +74,10 @@ public class ContainerInfo {
 	private List<ContainerMount> mounts;
 
 	@JsonProperty("GraphDriver")
-	private Map<String,String> graphDriver;
+	private Map<String,?> graphDriver;
 	
 
-	public Map<String, String> getGraphDriver() {
+	public Map<String, ?> getGraphDriver() {
 		return graphDriver;
 	}
 
