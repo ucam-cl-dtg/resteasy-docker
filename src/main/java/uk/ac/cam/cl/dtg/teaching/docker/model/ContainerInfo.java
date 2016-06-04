@@ -81,7 +81,7 @@ public class ContainerInfo {
 		return graphDriver;
 	}
 
-	public void setGraphDriver(Map<String, String> graphDriver) {
+	public void setGraphDriver(Map<String, ?> graphDriver) {
 		this.graphDriver = graphDriver;
 	}
 
