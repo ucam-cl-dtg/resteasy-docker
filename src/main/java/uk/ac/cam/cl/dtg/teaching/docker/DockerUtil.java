@@ -57,6 +57,26 @@ public class DockerUtil {
 	}
 	
 
+	/**
+	 * Kill a container
+	 *  
+	 * @param containerId of the container to kill
+	 * @param docker an instance of the DockerApi
+	 * @return true if the container was still runnning or false if it was not
+	 */
+	public static boolean killContainer(String containerId, DockerApi docker) {
+		try {
+			docker.killContainer(containerId, "SIGKILL");
+			return true;
+		} catch (RuntimeException e) {
+			if (e.getMessage().contains("is not running")) {
+				return false;
+			} 
+			else {
+				throw e;
+			}					
+		}
+	}
 	
 	
 	private static class AttachListener implements WebSocketListener {
