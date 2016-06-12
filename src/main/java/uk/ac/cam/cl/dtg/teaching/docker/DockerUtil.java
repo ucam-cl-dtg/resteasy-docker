@@ -78,6 +78,24 @@ public class DockerUtil {
 		}
 	}
 	
+	/**
+	 * Inspect a container
+	 * 
+	 * @param containerId of the container to inspect
+	 * @param docker an instance of the DockerApi
+	 * @return a ContainerInfo object or null if the container does not exist
+	 */
+	public static ContainerInfo inspectContainer(String containerId, Boolean showSize, DockerApi docker) {
+		try {
+			return docker.inspectContainer(containerId, showSize);
+		} catch (RuntimeException e) {
+			if (e.getMessage().equals("No such container: "+containerId)) {
+				return null;
+			}
+			throw e;
+		}
+		
+	}
 	
 	private static class AttachListener implements WebSocketListener {
 		private StringBuffer output;
