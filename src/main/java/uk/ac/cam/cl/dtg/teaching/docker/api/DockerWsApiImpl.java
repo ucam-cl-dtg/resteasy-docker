@@ -32,6 +32,13 @@ public class DockerWsApiImpl implements DockerWsApi {
 		}
 	}
 	
+	public void close() {
+		try {
+			client.stop();
+		} catch (Exception e) {
+			LOG.error("Failed to stop WebSocketClient",e);
+		}
+	}
 	
 	
 	public Future<Session> attach(final String containerId, 

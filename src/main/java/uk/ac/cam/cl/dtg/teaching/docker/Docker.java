@@ -48,7 +48,8 @@ public class Docker {
 					public Object invoke(Object proxy, Method method,
 							Object[] args) throws Throwable {
 						try {
-							if (method.getName().equals("attach")) { 
+							String methodName = method.getName();
+							if (methodName.equals("attach") || methodName.equals("close")) { 
 								return method.invoke(wsApiImpl, args);
 							}
 							else {
