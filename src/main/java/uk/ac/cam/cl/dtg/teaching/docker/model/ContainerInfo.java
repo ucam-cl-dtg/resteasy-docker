@@ -76,6 +76,31 @@ public class ContainerInfo {
 	@JsonProperty("GraphDriver")
 	private Map<String,?> graphDriver;
 	
+	@JsonProperty("SizeRootFs")
+	private Integer sizeRootFs;
+	
+	/**
+	 * The number of bytes written to disk by the container. This is only present if you set size to true in the inspect container request
+	 */
+	@JsonProperty("SizeRw")
+	private Integer sizeRw;
+	
+
+	public Integer getSizeRootFs() {
+		return sizeRootFs;
+	}
+
+	public void setSizeRootFs(Integer sizeRootFs) {
+		this.sizeRootFs = sizeRootFs;
+	}
+
+	public Integer getSizeRw() {
+		return sizeRw;
+	}
+
+	public void setSizeRw(Integer sizeRw) {
+		this.sizeRw = sizeRw;
+	}
 
 	public Map<String, ?> getGraphDriver() {
 		return graphDriver;
