@@ -19,6 +19,7 @@ import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerResponse;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerStartConfig;
 import uk.ac.cam.cl.dtg.teaching.docker.model.Image;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ImageInfo;
+import uk.ac.cam.cl.dtg.teaching.docker.model.SystemInfo;
 import uk.ac.cam.cl.dtg.teaching.docker.model.Version;
 import uk.ac.cam.cl.dtg.teaching.docker.model.WaitResponse;
 
@@ -97,6 +98,11 @@ public interface DockerRestApi {
 	@POST
 	@Path("/containers/{id}/kill")
 	public void killContainer(@PathParam("id") String id, @QueryParam("signal") String signal);
+	
+	
+	@GET
+	@Path("/info")
+	public SystemInfo systemInfo();
 	
 }
 
