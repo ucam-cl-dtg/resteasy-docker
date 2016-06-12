@@ -44,7 +44,7 @@ public class DockerUtil {
 	 */
 	public static boolean waitRunning(String containerID, DockerApi docker) {
 		for(int i=0;i<5;++i) {
-			ContainerInfo info = docker.inspectContainer(containerID);
+			ContainerInfo info = docker.inspectContainer(containerID, null);
 			if (info.getState().getPid() != 0) return true;
 			try {
 				Thread.sleep(1000);
