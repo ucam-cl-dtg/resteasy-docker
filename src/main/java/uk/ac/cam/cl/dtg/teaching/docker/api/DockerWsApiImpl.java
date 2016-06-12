@@ -3,7 +3,9 @@ package uk.ac.cam.cl.dtg.teaching.docker.api;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.concurrent.Future;
 
+import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketListener;
 import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
@@ -31,7 +33,8 @@ public class DockerWsApiImpl implements DockerWsApi {
 	}
 	
 	
-	public void attach(final String containerId, 
+	
+	public Future<Session> attach(final String containerId, 
 			final boolean logs, 
 			final boolean stream, 
 			final boolean stdout, 
@@ -51,7 +54,7 @@ public class DockerWsApiImpl implements DockerWsApi {
 			URI uri = new URI(url);
 			ClientUpgradeRequest req = new ClientUpgradeRequest();
 			req.setHeader("origin", "http://localhost:2375"); // this can be anything - but it has to be there....
-			client.connect(listener,uri,req);
+			return client.connect(listener,uri,req);
 		} catch (URISyntaxException e) {
 			throw new RuntimeException("Failed to connect to web socket",e);
 		} catch (IOException e) {
