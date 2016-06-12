@@ -44,7 +44,7 @@ public interface DockerRestApi {
 	
 	@GET
 	@Path("/containers/{id}/json")
-	public ContainerInfo inspectContainer(@PathParam("id") String id);
+	public ContainerInfo inspectContainer(@PathParam("id") String id, @QueryParam("size") Boolean showSize);
 
 
 	/**

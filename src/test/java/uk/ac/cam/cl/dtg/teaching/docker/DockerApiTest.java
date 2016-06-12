@@ -88,7 +88,7 @@ public class DockerApiTest {
 	@Test
 	public void testInspectContainer() throws IOException {
 		try (CreatedContainer created = createContainer()) {
-				ContainerInfo info = api.inspectContainer(created.getId());
+				ContainerInfo info = api.inspectContainer(created.getId(), null);
 				Assert.assertEquals("Name of inspected container should match name of created container", "/"+created.getName(), info.getName());
 		}
 	}
