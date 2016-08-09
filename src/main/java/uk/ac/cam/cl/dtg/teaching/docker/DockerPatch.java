@@ -28,7 +28,7 @@ public class DockerPatch {
 					log.info("Retry {} of 5: Caught aufs error when deleting container {}",retry, id);
 					removeContainerMounts(id);
 				}
-				else if (retry > 1 && e.getMessage().startsWith("no such id: "+id))	{
+				else if (e.getMessage().startsWith("No such container: "+id))	{
 					// sometimes the delete succeeds even if it says it didn't
 					return;
 				}
