@@ -21,19 +21,18 @@ import uk.ac.cam.cl.dtg.teaching.docker.api.DockerWsApiImpl;
 
 public class Docker {
 	
-	private static final int MAX_CONNECTIONS = 10;
 	private ResteasyWebTarget webTarget;
 
 	private DockerWsApiImpl wsApiImpl;
 	
-	public Docker(String hostname, int port) {
+	public Docker(String hostname, int port, int maxConnections) {
 		PoolingClientConnectionManager cm = new PoolingClientConnectionManager();
-		cm.setDefaultMaxPerRoute(MAX_CONNECTIONS);
-		cm.setMaxTotal(MAX_CONNECTIONS);
+		cm.setDefaultMaxPerRoute(maxConnections);
+		cm.setMaxTotal(maxConnections);
 		HttpClient httpClient = new DefaultHttpClient(cm);
 		ApacheHttpClient4Engine engine = new ApacheHttpClient4Engine(httpClient);
 		ResteasyClient c = new ResteasyClientBuilder()
-				.maxPooledPerRoute(MAX_CONNECTIONS).httpEngine(engine).build();
+				.maxPooledPerRoute(maxConnections).httpEngine(engine).build();
 		webTarget = c.target("http://" + hostname + ":" + port + "/v1.21");
 		wsApiImpl = new DockerWsApiImpl(hostname,port);
 	}

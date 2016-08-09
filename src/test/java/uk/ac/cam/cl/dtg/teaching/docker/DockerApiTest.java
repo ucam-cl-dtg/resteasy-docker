@@ -24,7 +24,7 @@ public class DockerApiTest {
 	
 	@Before
 	public void connect() {
-		Docker docker = new Docker("localhost",2375);
+		Docker docker = new Docker("localhost",2375,10);
 		api = docker.api();
 	}
 	
@@ -38,7 +38,7 @@ public class DockerApiTest {
 				@Override
 				public void run() {
 					try {
-						String response = DockerUtil.attachAndWait("read FOO; echo hello $FOO", j+"\n", "ubuntu:14.04",api);
+						String response = DockerUtil.attachAndWait("read FOO; echo hello $FOO", j+"\n", "ubuntu:16.04",api);
 						Assert.assertEquals("hello "+j, response.trim());
 					} catch (Exception e) {
 						throw new Error(e);
@@ -135,7 +135,7 @@ public class DockerApiTest {
 		String name = UUID.randomUUID().toString();
 		ContainerConfig config = new ContainerConfig();
 		config.setCmd(Arrays.asList("/bin/echo","hello"));
-		config.setImage("ubuntu:14.04");
+		config.setImage("ubuntu:16.04");
 		return new CreatedContainer(name,api.createContainer(name, config));
 	}
 	
