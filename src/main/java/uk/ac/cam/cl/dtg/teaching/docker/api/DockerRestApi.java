@@ -16,7 +16,6 @@ import uk.ac.cam.cl.dtg.teaching.docker.model.Container;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerConfig;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerInfo;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerResponse;
-import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerStartConfig;
 import uk.ac.cam.cl.dtg.teaching.docker.model.Image;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ImageInfo;
 import uk.ac.cam.cl.dtg.teaching.docker.model.SystemInfo;
@@ -63,7 +62,7 @@ public interface DockerRestApi {
 
 	@POST
 	@Path("/containers/{id}/start")
-	public void startContainer(@PathParam("id") String id, ContainerStartConfig config);
+	public void startContainer(@PathParam("id") String id);
 	
 	@POST
 	@Path("/commit")

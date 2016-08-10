@@ -79,7 +79,7 @@ public class ContainerConfig {
 	 * Set the entry point for the container as a string or an array of strings.
 	 */
 	@JsonProperty("Entrypoint")
-	private String entryPoint;
+	private String[] entryPoint;
 	
 	/**
 	 * A string specifying the image name to use for the container.
@@ -241,11 +241,11 @@ public class ContainerConfig {
 		this.cmd = cmd;
 	}
 
-	public String getEntryPoint() {
+	public String[] getEntryPoint() {
 		return entryPoint;
 	}
 
-	public void setEntryPoint(String entryPoint) {
+	public void setEntryPoint(String[] entryPoint) {
 		this.entryPoint = entryPoint;
 	}
 

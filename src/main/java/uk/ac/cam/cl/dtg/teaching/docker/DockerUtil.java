@@ -14,7 +14,6 @@ import uk.ac.cam.cl.dtg.teaching.docker.model.Container;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerConfig;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerInfo;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerResponse;
-import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerStartConfig;
 
 public class DockerUtil {
 
@@ -71,7 +70,10 @@ public class DockerUtil {
 		} catch (RuntimeException e) {
 			if (e.getMessage().contains("is not running")) {
 				return false;
-			} 
+			}
+			else if (e.getMessage().contains("No such container")) {
+				return false;
+			}
 			else {
 				throw e;
 			}					
@@ -147,8 +149,7 @@ public class DockerUtil {
 		StringBuffer output = new StringBuffer();
 		ContainerResponse createResponse = docker.createContainer(name, config);
 		try {
-			ContainerStartConfig startConfig = new ContainerStartConfig();
-			docker.startContainer(createResponse.getId(), startConfig);
+			docker.startContainer(createResponse.getId());
 			AttachListener l = new AttachListener(output,stdin);
 			docker.attach(createResponse.getId(),true,true,true,true,true,l);
 			docker.waitContainer(createResponse.getId());

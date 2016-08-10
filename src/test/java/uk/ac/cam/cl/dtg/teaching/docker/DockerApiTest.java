@@ -15,7 +15,6 @@ import uk.ac.cam.cl.dtg.teaching.docker.model.Container;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerConfig;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerInfo;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerResponse;
-import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerStartConfig;
 import uk.ac.cam.cl.dtg.teaching.docker.model.Image;
 
 public class DockerApiTest {
@@ -80,8 +79,7 @@ public class DockerApiTest {
 	@Test
 	public void testStartContainer() throws IOException {
 		try (CreatedContainer created = createContainer()) {
-			ContainerStartConfig config = new ContainerStartConfig();
-			api.startContainer(created.getId(), config);
+			api.startContainer(created.getId());
 		}
 	}
 	
