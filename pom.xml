@@ -3,7 +3,7 @@
 	<groupId>uk.ac.cam.cl.dtg.web</groupId>
 	<artifactId>resteasy-docker</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>resteasy-docker</name>
 
 	<properties>

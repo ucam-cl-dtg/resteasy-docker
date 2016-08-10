@@ -15,6 +15,8 @@ import uk.ac.cam.cl.dtg.teaching.docker.api.DockerApi;
 public class DockerPatch {
 
 	private static final String DOCKER_AUFS_ERROR_PREFIX = "Driver aufs failed to remove";
+	private static final String DOCKER_DEVICE_MAPPER_ERROR_PREFIX = "Driver devicemapper failed to remove";
+	
 	private static final Logger log = LoggerFactory.getLogger(DockerPatch.class);
 	
 	public static void deleteContainer(DockerApi api, String id, Boolean force, Boolean removeVolumes) {
@@ -24,8 +26,8 @@ public class DockerPatch {
 				return;
 			}
 			catch (RuntimeException e) {
-				if (e.getMessage().contains(DOCKER_AUFS_ERROR_PREFIX)) {
-					log.info("Retry {} of 5: Caught aufs error when deleting container {}",retry, id);
+				if (e.getMessage().contains(DOCKER_AUFS_ERROR_PREFIX) || e.getMessage().contains(DOCKER_DEVICE_MAPPER_ERROR_PREFIX)) {
+					log.info("Retry {} of 5: Caught driver error when deleting container {}",retry, id);
 					removeContainerMounts(id);
 				}
 				else if (e.getMessage().startsWith("No such container: "+id))	{
