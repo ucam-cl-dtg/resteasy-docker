@@ -54,17 +54,17 @@ public class DockerApiTest {
 	}
 	
 	@Test
-	public void testVersion() {		
+	public void testVersion() throws APIUnavailableException {		
 		api.getVersion();
 	}
 
 	@Test
-	public void testCreateDeleteContainer() throws IOException {
+	public void testCreateDeleteContainer() throws IOException, APIUnavailableException {
 		try (CreatedContainer c = createContainer()) {}
 	}
 	
 	@Test
-	public void testListContainers() throws IOException {
+	public void testListContainers() throws IOException, APIUnavailableException {
 		boolean found = false;
 		try( CreatedContainer created = createContainer()) {
 			List<Container> containers = api.listContainers(true, null, null, null, null);
@@ -77,14 +77,14 @@ public class DockerApiTest {
 	}
 	
 	@Test
-	public void testStartContainer() throws IOException {
+	public void testStartContainer() throws IOException, APIUnavailableException {
 		try (CreatedContainer created = createContainer()) {
 			api.startContainer(created.getId());
 		}
 	}
 	
 	@Test
-	public void testInspectContainer() throws IOException {
+	public void testInspectContainer() throws IOException, APIUnavailableException {
 		try (CreatedContainer created = createContainer()) {
 				ContainerInfo info = api.inspectContainer(created.getId(), null);
 				Assert.assertEquals("Name of inspected container should match name of created container", "/"+created.getName(), info.getName());
@@ -92,14 +92,14 @@ public class DockerApiTest {
 	}
 	
 	@Test
-	public void testCommitContainer() throws IOException {
+	public void testCommitContainer() throws IOException, APIUnavailableException {
 		try (CreatedContainer created = createContainer()) {
 			try (CreatedImage image = commitContainer(created)) {}
 		}
 	}
 	
 	@Test
-	public void testListImages() throws IOException {
+	public void testListImages() throws IOException, APIUnavailableException {
 		boolean found = false;
 		try (CreatedContainer created = createContainer()) {
 			try (CreatedImage image = commitContainer(created)) {
@@ -114,7 +114,7 @@ public class DockerApiTest {
 	}
 	
 	@Test
-	public void testInspectImage() throws IOException {
+	public void testInspectImage() throws IOException, APIUnavailableException {
 		try (CreatedContainer created = createContainer()) {
 			try (CreatedImage image = commitContainer(created)) {
 				api.inspectImage(image.getId());				
@@ -122,14 +122,14 @@ public class DockerApiTest {
 		}
 	}
 	
-	private CreatedImage commitContainer(CreatedContainer created) {
+	private CreatedImage commitContainer(CreatedContainer created) throws APIUnavailableException {
 		String tag = UUID.randomUUID().toString();
 		ContainerConfig config = new ContainerConfig();
 		return new CreatedImage(api.commitContainer(created.getId(), "unittest", tag, null, null, config));
 		
 	}
 	
-	private CreatedContainer createContainer() {
+	private CreatedContainer createContainer() throws APIUnavailableException {
 		String name = UUID.randomUUID().toString();
 		ContainerConfig config = new ContainerConfig();
 		config.setCmd(Arrays.asList("/bin/echo","hello"));
@@ -150,7 +150,11 @@ public class DockerApiTest {
 		
 		@Override
 		public void close() throws IOException {
-			api.deleteImage(id,true,false);
+			try {
+				api.deleteImage(id,true,false);
+			} catch (APIUnavailableException e) {
+				throw new IOException(e);
+			}
 		}
 	}
 	
@@ -173,7 +177,11 @@ public class DockerApiTest {
 		
 		@Override
 		public void close() throws IOException {
-			api.deleteContainer(id,true,true);
+			try {
+				api.deleteContainer(id,true,true);
+			} catch (APIUnavailableException e) {
+				throw new IOException(e);
+			}
 		}
 		
 	}

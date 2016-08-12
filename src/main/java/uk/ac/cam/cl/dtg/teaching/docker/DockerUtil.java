@@ -25,7 +25,7 @@ public class DockerUtil {
 		return host.getPath()+":"+container.getPath()+(readOnly?":ro":"");
 	}
 
-	public static void deleteContainerByName(String name, DockerApi docker) {
+	public static void deleteContainerByName(String name, DockerApi docker) throws APIUnavailableException {
 		List<Container> containers = docker.listContainers(true, null, null, null, null);
 		for(Container container : containers) {
 			String[] names = container.getNames();
@@ -40,8 +40,9 @@ public class DockerUtil {
 	 * @param containerID
 	 * @param docker
 	 * @return
+	 * @throws APIUnavailableException 
 	 */
-	public static boolean waitRunning(String containerID, DockerApi docker) {
+	public static boolean waitRunning(String containerID, DockerApi docker) throws APIUnavailableException {
 		for(int i=0;i<5;++i) {
 			ContainerInfo info = docker.inspectContainer(containerID, null);
 			if (info.getState().getPid() != 0) return true;
@@ -62,8 +63,9 @@ public class DockerUtil {
 	 * @param containerId of the container to kill
 	 * @param docker an instance of the DockerApi
 	 * @return true if the container was still runnning or false if it was not
+	 * @throws APIUnavailableException 
 	 */
-	public static boolean killContainer(String containerId, DockerApi docker) {
+	public static boolean killContainer(String containerId, DockerApi docker) throws APIUnavailableException {
 		try {
 			docker.killContainer(containerId, "SIGKILL");
 			return true;
@@ -86,8 +88,9 @@ public class DockerUtil {
 	 * @param containerId of the container to inspect
 	 * @param docker an instance of the DockerApi
 	 * @return a ContainerInfo object or null if the container does not exist
+	 * @throws APIUnavailableException 
 	 */
-	public static ContainerInfo inspectContainer(String containerId, Boolean showSize, DockerApi docker) {
+	public static ContainerInfo inspectContainer(String containerId, Boolean showSize, DockerApi docker) throws APIUnavailableException {
 		try {
 			return docker.inspectContainer(containerId, showSize);
 		} catch (RuntimeException e) {
@@ -140,7 +143,7 @@ public class DockerUtil {
 	public static String attachAndWait(String cmd, 
 			String stdin, 
 			String image,
-			DockerApi docker) {
+			DockerApi docker) throws APIUnavailableException {
 		String name = UUID.randomUUID().toString();
 		ContainerConfig config = new ContainerConfig();
 		config.setOpenStdin(true);

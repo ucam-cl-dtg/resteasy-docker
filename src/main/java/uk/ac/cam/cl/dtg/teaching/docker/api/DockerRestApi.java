@@ -12,6 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import uk.ac.cam.cl.dtg.teaching.docker.APIUnavailableException;
 import uk.ac.cam.cl.dtg.teaching.docker.model.Container;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerConfig;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerInfo;
@@ -28,7 +29,7 @@ public interface DockerRestApi {
 
 	@GET
 	@Path("/version")
-	public Version getVersion();
+	public Version getVersion() throws APIUnavailableException;
 	
 	@GET
 	@Path("/containers/json")
@@ -36,15 +37,15 @@ public interface DockerRestApi {
 			@QueryParam("limit") Integer maxResults,
 			@QueryParam("since") String createdAfterId,
 			@QueryParam("before") String createdBeforeId,
-			@QueryParam("size") Boolean showSize);
+			@QueryParam("size") Boolean showSize) throws APIUnavailableException;
 	
 	@POST
 	@Path("/containers/create")
-	public ContainerResponse createContainer(@QueryParam("name") String name, ContainerConfig config);
+	public ContainerResponse createContainer(@QueryParam("name") String name, ContainerConfig config) throws APIUnavailableException;
 	
 	@GET
 	@Path("/containers/{id}/json")
-	public ContainerInfo inspectContainer(@PathParam("id") String id, @QueryParam("size") Boolean showSize);
+	public ContainerInfo inspectContainer(@PathParam("id") String id, @QueryParam("size") Boolean showSize) throws APIUnavailableException;
 
 
 	/**
@@ -54,15 +55,15 @@ public interface DockerRestApi {
 	 */
 	@POST
 	@Path("/containers/{id}/wait")
-	public WaitResponse waitContainer(@PathParam("id") String id);
+	public WaitResponse waitContainer(@PathParam("id") String id) throws APIUnavailableException;
 	
 	@DELETE
 	@Path("/containers/{id}")
-	public void deleteContainer(@PathParam("id") String id, @QueryParam("force") Boolean force, @QueryParam("v") Boolean removeVolumes);
+	public void deleteContainer(@PathParam("id") String id, @QueryParam("force") Boolean force, @QueryParam("v") Boolean removeVolumes) throws APIUnavailableException;
 
 	@POST
 	@Path("/containers/{id}/start")
-	public void startContainer(@PathParam("id") String id);
+	public void startContainer(@PathParam("id") String id) throws APIUnavailableException;
 	
 	@POST
 	@Path("/commit")
@@ -71,7 +72,7 @@ public interface DockerRestApi {
 			@QueryParam("tag") String targetImageTag,
 			@QueryParam("m") String commitMessage,
 			@QueryParam("author") String author,
-			ContainerConfig config);
+			ContainerConfig config) throws APIUnavailableException;
 	
 	@GET
 	@Path("/images/json")
@@ -79,15 +80,15 @@ public interface DockerRestApi {
 			@QueryParam("limit") Integer maxResults,
 			@QueryParam("since") String createdAfterId,
 			@QueryParam("before") String createdBeforeId,
-			@QueryParam("size") Boolean showSize);
+			@QueryParam("size") Boolean showSize) throws APIUnavailableException;
 
 	@DELETE
 	@Path("/images/{name}")
-	public List<Map<String,String>> deleteImage(@PathParam("name") String id, @QueryParam("force") Boolean force, @QueryParam("noprune") Boolean noprune);
+	public List<Map<String,String>> deleteImage(@PathParam("name") String id, @QueryParam("force") Boolean force, @QueryParam("noprune") Boolean noprune) throws APIUnavailableException;
 
 	@GET
 	@Path("/images/{name}/json")
-	public ImageInfo inspectImage(@PathParam("name") String id);
+	public ImageInfo inspectImage(@PathParam("name") String id) throws APIUnavailableException;
 
 	/**
 	 * Kill a container. 
@@ -96,12 +97,12 @@ public interface DockerRestApi {
 	 */
 	@POST
 	@Path("/containers/{id}/kill")
-	public void killContainer(@PathParam("id") String id, @QueryParam("signal") String signal);
+	public void killContainer(@PathParam("id") String id, @QueryParam("signal") String signal) throws APIUnavailableException;
 	
 	
 	@GET
 	@Path("/info")
-	public SystemInfo systemInfo();
+	public SystemInfo systemInfo() throws APIUnavailableException;
 	
 }
 

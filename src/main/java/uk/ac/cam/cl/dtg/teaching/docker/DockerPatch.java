@@ -19,7 +19,7 @@ public class DockerPatch {
 	
 	private static final Logger log = LoggerFactory.getLogger(DockerPatch.class);
 	
-	public static void deleteContainer(DockerApi api, String id, Boolean force, Boolean removeVolumes) {
+	public static void deleteContainer(DockerApi api, String id, Boolean force, Boolean removeVolumes) throws APIUnavailableException {
 		for(int retry=1;retry<=5;++retry) {
 			try {
 				api.deleteContainer(id, force, removeVolumes);
