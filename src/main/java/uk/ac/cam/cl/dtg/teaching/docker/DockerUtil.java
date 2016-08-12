@@ -43,16 +43,13 @@ public class DockerUtil {
 	 * @throws APIUnavailableException 
 	 */
 	public static boolean waitRunning(String containerID, DockerApi docker) throws APIUnavailableException {
-		for(int i=0;i<5;++i) {
-			ContainerInfo info = docker.inspectContainer(containerID, null);
-			if (info.getState().getPid() != 0) return true;
-			try {
+		try {
+			for(int i=0;i<5;++i) {
+				ContainerInfo info = docker.inspectContainer(containerID, null);
+				if (info.getState().getPid() != 0) return true;
 				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-		}
+		} catch (InterruptedException e) {}
 		return false;
 	}
 	
