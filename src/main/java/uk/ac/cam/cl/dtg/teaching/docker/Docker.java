@@ -4,7 +4,9 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.net.SocketException;
 
+import javax.ws.rs.ProcessingException;
 import javax.ws.rs.WebApplicationException;
 
 import org.apache.http.client.HttpClient;
@@ -61,6 +63,11 @@ public class Docker {
 								String v = e.getResponse().readEntity(
 										String.class);
 								throw new RuntimeException(v);
+							}
+							if (t instanceof ProcessingException) {
+								if (t.getCause() instanceof SocketException) {
+									throw new APIUnavailableException("Unable to connect to the Docker API",t.getCause());
+								}
 							}
 							throw t;
 						}
