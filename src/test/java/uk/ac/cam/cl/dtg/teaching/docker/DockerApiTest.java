@@ -24,7 +24,12 @@ public class DockerApiTest {
 	@Before
 	public void connect() {
 		Docker docker = new Docker("localhost",2375,10);
-		api = docker.api();
+		api = docker.api(new APIListener() {
+			
+			@Override
+			public void callCompleted(boolean apiAvailable, long timeTaken, String methodName) {
+			}
+		});
 	}
 	
 	@Test

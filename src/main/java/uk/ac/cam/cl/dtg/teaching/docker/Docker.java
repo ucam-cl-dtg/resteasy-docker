@@ -26,7 +26,7 @@ public class Docker {
 	private ResteasyWebTarget webTarget;
 
 	private DockerWsApiImpl wsApiImpl;
-	
+		
 	public Docker(String hostname, int port, int maxConnections) {
 		PoolingClientConnectionManager cm = new PoolingClientConnectionManager();
 		cm.setDefaultMaxPerRoute(maxConnections);
@@ -40,7 +40,7 @@ public class Docker {
 	}
 	
 	
-	public DockerApi api() {
+	public DockerApi api(final APIListener listener) {
 		final DockerRestApi dockerProxy = webTarget.proxy(DockerRestApi.class);
 		DockerApi proxy = (DockerApi)Proxy.newProxyInstance(this.getClass()
 				.getClassLoader(), new Class<?>[] { DockerApi.class },
@@ -48,8 +48,10 @@ public class Docker {
 					@Override
 					public Object invoke(Object proxy, Method method,
 							Object[] args) throws Throwable {
+						long startTime = System.currentTimeMillis(); 
+						boolean apiOK = true;
+						String methodName = method.getName();
 						try {
-							String methodName = method.getName();
 							if (methodName.equals("attach") || methodName.equals("close")) { 
 								return method.invoke(wsApiImpl, args);
 							}
@@ -66,10 +68,14 @@ public class Docker {
 							}
 							if (t instanceof ProcessingException) {
 								if (t.getCause() instanceof SocketException) {
+									apiOK = false;
 									throw new APIUnavailableException("Unable to connect to the Docker API",t.getCause());
 								}
 							}
 							throw t;
+						} finally {
+							long duration = System.currentTimeMillis() - startTime;
+							listener.callCompleted(apiOK, duration, methodName);
 						}
 					}
 				});
