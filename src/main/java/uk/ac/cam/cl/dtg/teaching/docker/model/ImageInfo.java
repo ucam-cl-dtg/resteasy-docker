@@ -46,7 +46,7 @@ public class ImageInfo {
 		private String created;
 		
 		@JsonProperty("GraphDriver")
-		private Map<String,String> graphDriver;
+		private Map<String,?> graphDriver;
 		
 		@JsonProperty("RepoDigests")
 		private List<String> repoDigests;
@@ -165,11 +165,11 @@ public class ImageInfo {
 			this.created = created;
 		}
 
-		public Map<String, String> getGraphDriver() {
+		public Map<String, ?> getGraphDriver() {
 			return graphDriver;
 		}
 
-		public void setGraphDriver(Map<String, String> graphDriver) {
+		public void setGraphDriver(Map<String, ?> graphDriver) {
 			this.graphDriver = graphDriver;
 		}
 
