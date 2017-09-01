@@ -20,7 +20,7 @@ public class DockerUtil {
 	public static String bind(File host, File container) {
 		return bind(host,container,false);
 	}
-	
+
 	public static String bind(File host, File container, boolean readOnly) {
 		return host.getPath()+":"+container.getPath()+(readOnly?":ro":"");
 	}
@@ -40,7 +40,7 @@ public class DockerUtil {
 	 * @param containerID
 	 * @param docker
 	 * @return
-	 * @throws APIUnavailableException 
+	 * @throws APIUnavailableException
 	 */
 	public static boolean waitRunning(String containerID, DockerApi docker) throws APIUnavailableException {
 		try {
@@ -52,15 +52,15 @@ public class DockerUtil {
 		} catch (InterruptedException e) {}
 		return false;
 	}
-	
+
 
 	/**
 	 * Kill a container
-	 *  
+	 *
 	 * @param containerId of the container to kill
 	 * @param docker an instance of the DockerApi
 	 * @return true if the container was still runnning or false if it was not
-	 * @throws APIUnavailableException 
+	 * @throws APIUnavailableException
 	 */
 	public static boolean killContainer(String containerId, DockerApi docker) throws APIUnavailableException {
 		try {
@@ -75,17 +75,17 @@ public class DockerUtil {
 			}
 			else {
 				throw e;
-			}					
+			}
 		}
 	}
-	
+
 	/**
 	 * Inspect a container
-	 * 
+	 *
 	 * @param containerId of the container to inspect
 	 * @param docker an instance of the DockerApi
 	 * @return a ContainerInfo object or null if the container does not exist
-	 * @throws APIUnavailableException 
+	 * @throws APIUnavailableException
 	 */
 	public static ContainerInfo inspectContainer(String containerId, Boolean showSize, DockerApi docker) throws APIUnavailableException {
 		try {
@@ -96,20 +96,20 @@ public class DockerUtil {
 			}
 			throw e;
 		}
-		
+
 	}
-	
+
 	private static class AttachListener implements WebSocketListener {
 		private StringBuffer output;
 		private String data;
-		
+
 		public AttachListener(StringBuffer output, String data) {
 			this.output = output;
 			this.data = data;
 		}
 
 		@Override
-		public void onWebSocketClose(int statusCode, String reason) {			
+		public void onWebSocketClose(int statusCode, String reason) {
 		}
 
 		@Override
@@ -128,17 +128,17 @@ public class DockerUtil {
 
 		@Override
 		public void onWebSocketBinary(byte[] payload, int offset, int len) {
-			throw new RuntimeException("Unexpected binary data from container");
+			output.append(new String(payload,offset,len));
 		}
 
 		@Override
 		public void onWebSocketText(String message) {
 			output.append(message);
-		}		
+		}
 	}
-		
-	public static String attachAndWait(String cmd, 
-			String stdin, 
+
+	public static String attachAndWait(String cmd,
+			String stdin,
 			String image,
 			DockerApi docker) throws APIUnavailableException {
 		String name = UUID.randomUUID().toString();
