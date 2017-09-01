@@ -1,34 +1,31 @@
 package uk.ac.cam.cl.dtg.teaching.docker.model;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RootFS {
 
-	@JsonProperty("Type")
-	private String type;
-	
-	@JsonProperty("Layers")
-	private List<String> layers;
+  @JsonProperty("Type")
+  private String type;
 
-	public String getType() {
-		return type;
-	}
+  @JsonProperty("Layers")
+  private List<String> layers;
 
-	public void setType(String type) {
-		this.type = type;
-	}
+  public String getType() {
+    return type;
+  }
 
-	public List<String> getLayers() {
-		return layers;
-	}
+  public void setType(String type) {
+    this.type = type;
+  }
 
-	public void setLayers(List<String> layers) {
-		this.layers = layers;
-	}
-	
-	
+  public List<String> getLayers() {
+    return layers;
+  }
+
+  public void setLayers(List<String> layers) {
+    this.layers = layers;
+  }
 }

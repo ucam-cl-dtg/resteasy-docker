@@ -3,89 +3,84 @@ package uk.ac.cam.cl.dtg.teaching.docker.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ContainerMount {
 
-	@JsonProperty("Name")
-	private String name;
-	
-	@JsonProperty("Source")
-	private String source;
-	
-	@JsonProperty("Destination")
-	private String destination;
-	
-	/**
-	 * e.g. ro,Z
-	 */
-	@JsonProperty("Mode")
-	private String mode;
-	
-	@JsonProperty("RW")
-	private Boolean rw;
+  @JsonProperty("Name")
+  private String name;
 
-	@JsonProperty("Driver")
-	private String driver;
-		
-	@JsonProperty("Propagation")
-	private String propagation;
-	
-	
-	public String getPropagation() {
-		return propagation;
-	}
+  @JsonProperty("Source")
+  private String source;
 
-	public void setPropagation(String propagation) {
-		this.propagation = propagation;
-	}
+  @JsonProperty("Destination")
+  private String destination;
 
-	public String getDriver() {
-		return driver;
-	}
+  /** e.g. ro,Z */
+  @JsonProperty("Mode")
+  private String mode;
 
-	public void setDriver(String driver) {
-		this.driver = driver;
-	}
+  @JsonProperty("RW")
+  private Boolean rw;
 
-	public String getName() {
-		return name;
-	}
+  @JsonProperty("Driver")
+  private String driver;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  @JsonProperty("Propagation")
+  private String propagation;
 
-	public String getSource() {
-		return source;
-	}
+  public String getPropagation() {
+    return propagation;
+  }
 
-	public void setSource(String source) {
-		this.source = source;
-	}
+  public void setPropagation(String propagation) {
+    this.propagation = propagation;
+  }
 
-	public String getDestination() {
-		return destination;
-	}
+  public String getDriver() {
+    return driver;
+  }
 
-	public void setDestination(String destination) {
-		this.destination = destination;
-	}
+  public void setDriver(String driver) {
+    this.driver = driver;
+  }
 
-	public String getMode() {
-		return mode;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public void setMode(String mode) {
-		this.mode = mode;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public Boolean getRw() {
-		return rw;
-	}
+  public String getSource() {
+    return source;
+  }
 
-	public void setRw(Boolean rw) {
-		this.rw = rw;
-	}
-	
-	
+  public void setSource(String source) {
+    this.source = source;
+  }
+
+  public String getDestination() {
+    return destination;
+  }
+
+  public void setDestination(String destination) {
+    this.destination = destination;
+  }
+
+  public String getMode() {
+    return mode;
+  }
+
+  public void setMode(String mode) {
+    this.mode = mode;
+  }
+
+  public Boolean getRw() {
+    return rw;
+  }
+
+  public void setRw(Boolean rw) {
+    this.rw = rw;
+  }
 }

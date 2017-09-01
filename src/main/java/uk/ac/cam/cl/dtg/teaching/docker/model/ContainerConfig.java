@@ -1,325 +1,285 @@
 package uk.ac.cam.cl.dtg.teaching.docker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ContainerConfig {
 
-	/**
-	 * A string value containing the hostname to use for the container.
-	 */
-	@JsonProperty("Hostname")
-	private String hostname = "";
-	
-	/**
-	 * A string value containing the domain name to use for the container.
-	 */
-	@JsonProperty("Domainname")
-	private String domainname = "";
-	
-	/**
-	 * A string value specifying the user inside the container.
-	 */
-	@JsonProperty("User")
-	private String user = "";
+  /** A string value containing the hostname to use for the container. */
+  @JsonProperty("Hostname")
+  private String hostname = "";
 
-	/**
-	 *  Boolean value, attaches to stdin.
-	 */
-	@JsonProperty("AttachStdin")
-	private Boolean attachStdin;
-	
-	/**
-	 * Boolean value, attaches to stdout.
-	 */
-	@JsonProperty("AttachStdout")
-	private Boolean attachStdout;
-	
-	/**
-	 * Boolean value, attaches to stderr.
-	 */
-	@JsonProperty("AttachStderr")
-	private Boolean attachStderr;
-	
-	/**
-	 *  Boolean value, Attach standard streams to a tty, including stdin if it is not closed.
-	 */
-	@JsonProperty("Tty")
-	private Boolean tty;
-	
-	/**
-	 * Boolean value, opens stdin,
-	 */
-	@JsonProperty("OpenStdin")
-	private Boolean openStdin;
-		
-	/**
-	 * Boolean value, close stdin after the 1 attached client disconnects.
-	 */
-	@JsonProperty("StdinOnce")
-	private Boolean stdinOnce;
-	
-	/**
-	 * A list of environment variables in the form of ["VAR=value"[,"VAR2=value2"]]
-	 */
-	@JsonProperty("Env")
-	private List<String> env;
+  /** A string value containing the domain name to use for the container. */
+  @JsonProperty("Domainname")
+  private String domainname = "";
 
-	/**
-	 * Command to run specified as a string or an array of strings.
-	 */
-	@JsonProperty("Cmd")
-	private List<String> cmd;
+  /** A string value specifying the user inside the container. */
+  @JsonProperty("User")
+  private String user = "";
 
-	/**
-	 * Set the entry point for the container as a string or an array of strings.
-	 */
-	@JsonProperty("Entrypoint")
-	private String[] entryPoint;
-	
-	/**
-	 * A string specifying the image name to use for the container.
-	 */
-	@JsonProperty("Image")
-	private String image;
-	
-	/**
-	 * Custom metadata which you can add to a container.  Stored as key/value pairs
-	 */
-	@JsonProperty("Labels")
-	private Map<String,String> labels;
+  /** Boolean value, attaches to stdin. */
+  @JsonProperty("AttachStdin")
+  private Boolean attachStdin;
 
-	/**
-	 * An array of mount points in the container.
-	 */
-	@JsonProperty("Mounts")
-	private List<ContainerMount> mounts;
-	
-	/**
-	 * A string specifying the working directory for commands to run in.
-	 */
-	@JsonProperty("WorkingDir")
-	private String workingDir = "";
-	
-	/**
-	 * Boolean value, when true disables networking for the container
-	 */
-	@JsonProperty("NetworkDisabled")
-	private Boolean networkDisabled;
-	
-	@JsonProperty("MacAddress")
-	private String macAddress;
-	
-	/**
-	 * An object mapping ports to an empty object in the form of: "ExposedPorts": { "<port>/<tcp|udp>: {}" }
-	 */
-	@JsonProperty("ExposedPorts")
-	private Map<String,?> exposedPorts;
+  /** Boolean value, attaches to stdout. */
+  @JsonProperty("AttachStdout")
+  private Boolean attachStdout;
 
-	/**
-	 *  Signal to stop a container as a string or unsigned integer. SIGTERM by default.
-	 */
-	@JsonProperty("StopSignal")
-	private String stopSignal;
-	
-	@JsonProperty("HostConfig")
-	private ContainerHostConfig hostConfig;
+  /** Boolean value, attaches to stderr. */
+  @JsonProperty("AttachStderr")
+  private Boolean attachStderr;
 
-	@JsonProperty("Volumes")
-	private Map<String,Map<String,String>> volumes;
-	
-	public Map<String, Map<String, String>> getVolumes() {
-		return volumes;
-	}
+  /** Boolean value, Attach standard streams to a tty, including stdin if it is not closed. */
+  @JsonProperty("Tty")
+  private Boolean tty;
 
-	public void setVolumes(Map<String, Map<String, String>> volumes) {
-		this.volumes = volumes;
-	}
+  /** Boolean value, opens stdin, */
+  @JsonProperty("OpenStdin")
+  private Boolean openStdin;
 
-	@JsonProperty("OnBuild")
-	private String onBuild;
-	
-	
-	
-	public String getOnBuild() {
-		return onBuild;
-	}
+  /** Boolean value, close stdin after the 1 attached client disconnects. */
+  @JsonProperty("StdinOnce")
+  private Boolean stdinOnce;
 
-	public void setOnBuild(String onBuild) {
-		this.onBuild = onBuild;
-	}
+  /** A list of environment variables in the form of ["VAR=value"[,"VAR2=value2"]] */
+  @JsonProperty("Env")
+  private List<String> env;
 
-	public String getHostname() {
-		return hostname;
-	}
+  /** Command to run specified as a string or an array of strings. */
+  @JsonProperty("Cmd")
+  private List<String> cmd;
 
-	public void setHostname(String hostname) {
-		this.hostname = hostname;
-	}
+  /** Set the entry point for the container as a string or an array of strings. */
+  @JsonProperty("Entrypoint")
+  private String[] entryPoint;
 
-	public String getDomainname() {
-		return domainname;
-	}
+  /** A string specifying the image name to use for the container. */
+  @JsonProperty("Image")
+  private String image;
 
-	public void setDomainname(String domainname) {
-		this.domainname = domainname;
-	}
+  /** Custom metadata which you can add to a container. Stored as key/value pairs */
+  @JsonProperty("Labels")
+  private Map<String, String> labels;
 
-	public String getUser() {
-		return user;
-	}
+  /** An array of mount points in the container. */
+  @JsonProperty("Mounts")
+  private List<ContainerMount> mounts;
 
-	public void setUser(String user) {
-		this.user = user;
-	}
+  /** A string specifying the working directory for commands to run in. */
+  @JsonProperty("WorkingDir")
+  private String workingDir = "";
 
-	public Boolean getAttachStdin() {
-		return attachStdin;
-	}
+  /** Boolean value, when true disables networking for the container */
+  @JsonProperty("NetworkDisabled")
+  private Boolean networkDisabled;
 
-	public void setAttachStdin(Boolean attachStdin) {
-		this.attachStdin = attachStdin;
-	}
+  @JsonProperty("MacAddress")
+  private String macAddress;
 
-	public Boolean getAttachStdout() {
-		return attachStdout;
-	}
+  /**
+   * An object mapping ports to an empty object in the form of: "ExposedPorts": { "<port>/<tcp|udp>:
+   * {}" }
+   */
+  @JsonProperty("ExposedPorts")
+  private Map<String, ?> exposedPorts;
 
-	public void setAttachStdout(Boolean attachStdout) {
-		this.attachStdout = attachStdout;
-	}
+  /** Signal to stop a container as a string or unsigned integer. SIGTERM by default. */
+  @JsonProperty("StopSignal")
+  private String stopSignal;
 
-	public Boolean getAttachStderr() {
-		return attachStderr;
-	}
+  @JsonProperty("HostConfig")
+  private ContainerHostConfig hostConfig;
 
-	public void setAttachStderr(Boolean attachStderr) {
-		this.attachStderr = attachStderr;
-	}
+  @JsonProperty("Volumes")
+  private Map<String, Map<String, String>> volumes;
 
-	public Boolean getTty() {
-		return tty;
-	}
+  public Map<String, Map<String, String>> getVolumes() {
+    return volumes;
+  }
 
-	public void setTty(Boolean tty) {
-		this.tty = tty;
-	}
+  public void setVolumes(Map<String, Map<String, String>> volumes) {
+    this.volumes = volumes;
+  }
 
-	public Boolean getOpenStdin() {
-		return openStdin;
-	}
+  @JsonProperty("OnBuild")
+  private String onBuild;
 
-	public void setOpenStdin(Boolean openStdin) {
-		this.openStdin = openStdin;
-	}
+  public String getOnBuild() {
+    return onBuild;
+  }
 
-	public Boolean getStdinOnce() {
-		return stdinOnce;
-	}
+  public void setOnBuild(String onBuild) {
+    this.onBuild = onBuild;
+  }
 
-	public void setStdinOnce(Boolean stdinOnce) {
-		this.stdinOnce = stdinOnce;
-	}
+  public String getHostname() {
+    return hostname;
+  }
 
-	public List<String> getEnv() {
-		return env;
-	}
+  public void setHostname(String hostname) {
+    this.hostname = hostname;
+  }
 
-	public void setEnv(List<String> env) {
-		this.env = env;
-	}
+  public String getDomainname() {
+    return domainname;
+  }
 
-	public List<String> getCmd() {
-		return cmd;
-	}
+  public void setDomainname(String domainname) {
+    this.domainname = domainname;
+  }
 
-	public void setCmd(List<String> cmd) {
-		this.cmd = cmd;
-	}
+  public String getUser() {
+    return user;
+  }
 
-	public String[] getEntryPoint() {
-		return entryPoint;
-	}
+  public void setUser(String user) {
+    this.user = user;
+  }
 
-	public void setEntryPoint(String[] entryPoint) {
-		this.entryPoint = entryPoint;
-	}
+  public Boolean getAttachStdin() {
+    return attachStdin;
+  }
 
-	public String getImage() {
-		return image;
-	}
+  public void setAttachStdin(Boolean attachStdin) {
+    this.attachStdin = attachStdin;
+  }
 
-	public void setImage(String image) {
-		this.image = image;
-	}
+  public Boolean getAttachStdout() {
+    return attachStdout;
+  }
 
-	public Map<String, String> getLabels() {
-		return labels;
-	}
+  public void setAttachStdout(Boolean attachStdout) {
+    this.attachStdout = attachStdout;
+  }
 
-	public void setLabels(Map<String, String> labels) {
-		this.labels = labels;
-	}
+  public Boolean getAttachStderr() {
+    return attachStderr;
+  }
 
-	public List<ContainerMount> getMounts() {
-		return mounts;
-	}
+  public void setAttachStderr(Boolean attachStderr) {
+    this.attachStderr = attachStderr;
+  }
 
-	public void setMounts(List<ContainerMount> mounts) {
-		this.mounts = mounts;
-	}
+  public Boolean getTty() {
+    return tty;
+  }
 
-	public String getWorkingDir() {
-		return workingDir;
-	}
+  public void setTty(Boolean tty) {
+    this.tty = tty;
+  }
 
-	public void setWorkingDir(String workingDir) {
-		this.workingDir = workingDir;
-	}
+  public Boolean getOpenStdin() {
+    return openStdin;
+  }
 
-	public Boolean getNetworkDisabled() {
-		return networkDisabled;
-	}
+  public void setOpenStdin(Boolean openStdin) {
+    this.openStdin = openStdin;
+  }
 
-	public void setNetworkDisabled(Boolean networkDisabled) {
-		this.networkDisabled = networkDisabled;
-	}
+  public Boolean getStdinOnce() {
+    return stdinOnce;
+  }
 
-	public String getMacAddress() {
-		return macAddress;
-	}
+  public void setStdinOnce(Boolean stdinOnce) {
+    this.stdinOnce = stdinOnce;
+  }
 
-	public void setMacAddress(String macAddress) {
-		this.macAddress = macAddress;
-	}
+  public List<String> getEnv() {
+    return env;
+  }
 
-	public Map<String, ?> getExposedPorts() {
-		return exposedPorts;
-	}
+  public void setEnv(List<String> env) {
+    this.env = env;
+  }
 
-	public void setExposedPorts(Map<String, ?> exposedPorts) {
-		this.exposedPorts = exposedPorts;
-	}
+  public List<String> getCmd() {
+    return cmd;
+  }
 
-	public String getStopSignal() {
-		return stopSignal;
-	}
+  public void setCmd(List<String> cmd) {
+    this.cmd = cmd;
+  }
 
-	public void setStopSignal(String stopSignal) {
-		this.stopSignal = stopSignal;
-	}
+  public String[] getEntryPoint() {
+    return entryPoint;
+  }
 
-	public ContainerHostConfig getHostConfig() {
-		return hostConfig;
-	}
+  public void setEntryPoint(String[] entryPoint) {
+    this.entryPoint = entryPoint;
+  }
 
-	public void setHostConfig(ContainerHostConfig hostConfig) {
-		this.hostConfig = hostConfig;
-	}
-	
-	
+  public String getImage() {
+    return image;
+  }
+
+  public void setImage(String image) {
+    this.image = image;
+  }
+
+  public Map<String, String> getLabels() {
+    return labels;
+  }
+
+  public void setLabels(Map<String, String> labels) {
+    this.labels = labels;
+  }
+
+  public List<ContainerMount> getMounts() {
+    return mounts;
+  }
+
+  public void setMounts(List<ContainerMount> mounts) {
+    this.mounts = mounts;
+  }
+
+  public String getWorkingDir() {
+    return workingDir;
+  }
+
+  public void setWorkingDir(String workingDir) {
+    this.workingDir = workingDir;
+  }
+
+  public Boolean getNetworkDisabled() {
+    return networkDisabled;
+  }
+
+  public void setNetworkDisabled(Boolean networkDisabled) {
+    this.networkDisabled = networkDisabled;
+  }
+
+  public String getMacAddress() {
+    return macAddress;
+  }
+
+  public void setMacAddress(String macAddress) {
+    this.macAddress = macAddress;
+  }
+
+  public Map<String, ?> getExposedPorts() {
+    return exposedPorts;
+  }
+
+  public void setExposedPorts(Map<String, ?> exposedPorts) {
+    this.exposedPorts = exposedPorts;
+  }
+
+  public String getStopSignal() {
+    return stopSignal;
+  }
+
+  public void setStopSignal(String stopSignal) {
+    this.stopSignal = stopSignal;
+  }
+
+  public ContainerHostConfig getHostConfig() {
+    return hostConfig;
+  }
+
+  public void setHostConfig(ContainerHostConfig hostConfig) {
+    this.hostConfig = hostConfig;
+  }
 }

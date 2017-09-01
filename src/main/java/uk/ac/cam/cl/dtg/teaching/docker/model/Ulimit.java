@@ -3,40 +3,38 @@ package uk.ac.cam.cl.dtg.teaching.docker.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Ulimit {
-	@JsonProperty("Name")
-	private String name;
+  @JsonProperty("Name")
+  private String name;
 
-	@JsonProperty("Soft")
-	private Integer soft;
+  @JsonProperty("Soft")
+  private Integer soft;
 
-	@JsonProperty("Hard")
-	private Integer hard;
+  @JsonProperty("Hard")
+  private Integer hard;
 
-	public String getName() {
-		return name;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public Integer getSoft() {
-		return soft;
-	}
+  public Integer getSoft() {
+    return soft;
+  }
 
-	public void setSoft(Integer soft) {
-		this.soft = soft;
-	}
+  public void setSoft(Integer soft) {
+    this.soft = soft;
+  }
 
-	public Integer getHard() {
-		return hard;
-	}
+  public Integer getHard() {
+    return hard;
+  }
 
-	public void setHard(Integer hard) {
-		this.hard = hard;
-	}
-	
-	
+  public void setHard(Integer hard) {
+    this.hard = hard;
+  }
 }

@@ -1,211 +1,208 @@
 package uk.ac.cam.cl.dtg.teaching.docker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ContainerNetworkSettings {
 
-	@JsonProperty("Bridge")
-	private String bridge;
+  @JsonProperty("Bridge")
+  private String bridge;
 
-	@JsonProperty("SandboxID")
-	private String sandboxID;
+  @JsonProperty("SandboxID")
+  private String sandboxID;
 
-	@JsonProperty("HairpinMode")
-	private Boolean hairpinMode;
+  @JsonProperty("HairpinMode")
+  private Boolean hairpinMode;
 
-	@JsonProperty("LinkLocalIPv6Address")
-	private String linkLocalIPv6Address;
+  @JsonProperty("LinkLocalIPv6Address")
+  private String linkLocalIPv6Address;
 
-	@JsonProperty("LinkLocalIPv6PrefixLen")
-	private String linkLocalIPv6PrefixLen;
+  @JsonProperty("LinkLocalIPv6PrefixLen")
+  private String linkLocalIPv6PrefixLen;
 
-	@JsonProperty("Ports")
-	private Map<String,?> ports;
+  @JsonProperty("Ports")
+  private Map<String, ?> ports;
 
-	@JsonProperty("SandboxKey")
-	private String sandboxKey;
+  @JsonProperty("SandboxKey")
+  private String sandboxKey;
 
-	@JsonProperty("SecondaryIPAddresses")
-	private List<String> secondaryIPAddresses;
-	
-	@JsonProperty("SecondaryIPv6Addresses")
-	private List<String> secondaryIPv6Addresses;
+  @JsonProperty("SecondaryIPAddresses")
+  private List<String> secondaryIPAddresses;
 
-	@JsonProperty("EndpointID")
-	private String endpointID;
-	
-	@JsonProperty("Gateway")
-	private String gateway;
-	
-	@JsonProperty("GlobalIPv6Address")
-	private String globalIPv6Address;
-	
-	@JsonProperty("GlobalIPv6PrefixLen")
-	private String globalIPv6PrexixLen;
-	
-	@JsonProperty("IPAddress")
-	private String ipAddress;
-	
-	@JsonProperty("IPPrefixLen")
-	private Integer ipPrefixLen;
-	
-	@JsonProperty("IPv6Gateway")
-	private String ipv6Gateway;
-	
-	@JsonProperty("MacAddress")
-	private String macAddress;
+  @JsonProperty("SecondaryIPv6Addresses")
+  private List<String> secondaryIPv6Addresses;
 
-	@JsonProperty("Networks")
-	private Map<String,?> networks;
+  @JsonProperty("EndpointID")
+  private String endpointID;
 
-	public String getSandboxID() {
-		return sandboxID;
-	}
+  @JsonProperty("Gateway")
+  private String gateway;
 
-	public void setSandboxID(String sandboxID) {
-		this.sandboxID = sandboxID;
-	}
+  @JsonProperty("GlobalIPv6Address")
+  private String globalIPv6Address;
 
-	public Boolean getHairpinMode() {
-		return hairpinMode;
-	}
+  @JsonProperty("GlobalIPv6PrefixLen")
+  private String globalIPv6PrexixLen;
 
-	public void setHairpinMode(Boolean hairpinMode) {
-		this.hairpinMode = hairpinMode;
-	}
+  @JsonProperty("IPAddress")
+  private String ipAddress;
 
-	public String getLinkLocalIPv6Address() {
-		return linkLocalIPv6Address;
-	}
+  @JsonProperty("IPPrefixLen")
+  private Integer ipPrefixLen;
 
-	public void setLinkLocalIPv6Address(String linkLocalIPv6Address) {
-		this.linkLocalIPv6Address = linkLocalIPv6Address;
-	}
+  @JsonProperty("IPv6Gateway")
+  private String ipv6Gateway;
 
-	public String getLinkLocalIPv6PrefixLen() {
-		return linkLocalIPv6PrefixLen;
-	}
+  @JsonProperty("MacAddress")
+  private String macAddress;
 
-	public void setLinkLocalIPv6PrefixLen(String linkLocalIPv6PrefixLen) {
-		this.linkLocalIPv6PrefixLen = linkLocalIPv6PrefixLen;
-	}
+  @JsonProperty("Networks")
+  private Map<String, ?> networks;
 
-	public Map<String, ?> getPorts() {
-		return ports;
-	}
+  public String getSandboxID() {
+    return sandboxID;
+  }
 
-	public void setPorts(Map<String, ?> ports) {
-		this.ports = ports;
-	}
+  public void setSandboxID(String sandboxID) {
+    this.sandboxID = sandboxID;
+  }
 
-	public String getSandboxKey() {
-		return sandboxKey;
-	}
+  public Boolean getHairpinMode() {
+    return hairpinMode;
+  }
 
-	public void setSandboxKey(String sandboxKey) {
-		this.sandboxKey = sandboxKey;
-	}
+  public void setHairpinMode(Boolean hairpinMode) {
+    this.hairpinMode = hairpinMode;
+  }
 
-	public List<String> getSecondaryIPAddresses() {
-		return secondaryIPAddresses;
-	}
+  public String getLinkLocalIPv6Address() {
+    return linkLocalIPv6Address;
+  }
 
-	public void setSecondaryIPAddresses(List<String> secondaryIPAddresses) {
-		this.secondaryIPAddresses = secondaryIPAddresses;
-	}
+  public void setLinkLocalIPv6Address(String linkLocalIPv6Address) {
+    this.linkLocalIPv6Address = linkLocalIPv6Address;
+  }
 
-	public List<String> getSecondaryIPv6Addresses() {
-		return secondaryIPv6Addresses;
-	}
+  public String getLinkLocalIPv6PrefixLen() {
+    return linkLocalIPv6PrefixLen;
+  }
 
-	public void setSecondaryIPv6Addresses(List<String> secondaryIPv6Addresses) {
-		this.secondaryIPv6Addresses = secondaryIPv6Addresses;
-	}
+  public void setLinkLocalIPv6PrefixLen(String linkLocalIPv6PrefixLen) {
+    this.linkLocalIPv6PrefixLen = linkLocalIPv6PrefixLen;
+  }
 
-	public String getEndpointID() {
-		return endpointID;
-	}
+  public Map<String, ?> getPorts() {
+    return ports;
+  }
 
-	public void setEndpointID(String endpointID) {
-		this.endpointID = endpointID;
-	}
+  public void setPorts(Map<String, ?> ports) {
+    this.ports = ports;
+  }
 
-	public String getGateway() {
-		return gateway;
-	}
+  public String getSandboxKey() {
+    return sandboxKey;
+  }
 
-	public void setGateway(String gateway) {
-		this.gateway = gateway;
-	}
+  public void setSandboxKey(String sandboxKey) {
+    this.sandboxKey = sandboxKey;
+  }
 
-	public String getGlobalIPv6Address() {
-		return globalIPv6Address;
-	}
+  public List<String> getSecondaryIPAddresses() {
+    return secondaryIPAddresses;
+  }
 
-	public void setGlobalIPv6Address(String globalIPv6Address) {
-		this.globalIPv6Address = globalIPv6Address;
-	}
+  public void setSecondaryIPAddresses(List<String> secondaryIPAddresses) {
+    this.secondaryIPAddresses = secondaryIPAddresses;
+  }
 
-	public String getGlobalIPv6PrexixLen() {
-		return globalIPv6PrexixLen;
-	}
+  public List<String> getSecondaryIPv6Addresses() {
+    return secondaryIPv6Addresses;
+  }
 
-	public void setGlobalIPv6PrexixLen(String globalIPv6PrexixLen) {
-		this.globalIPv6PrexixLen = globalIPv6PrexixLen;
-	}
+  public void setSecondaryIPv6Addresses(List<String> secondaryIPv6Addresses) {
+    this.secondaryIPv6Addresses = secondaryIPv6Addresses;
+  }
 
-	public String getIpAddress() {
-		return ipAddress;
-	}
+  public String getEndpointID() {
+    return endpointID;
+  }
 
-	public void setIpAddress(String ipAddress) {
-		this.ipAddress = ipAddress;
-	}
+  public void setEndpointID(String endpointID) {
+    this.endpointID = endpointID;
+  }
 
-	public Integer getIpPrefixLen() {
-		return ipPrefixLen;
-	}
+  public String getGateway() {
+    return gateway;
+  }
 
-	public void setIpPrefixLen(Integer ipPrefixLen) {
-		this.ipPrefixLen = ipPrefixLen;
-	}
+  public void setGateway(String gateway) {
+    this.gateway = gateway;
+  }
 
-	public String getIpv6Gateway() {
-		return ipv6Gateway;
-	}
+  public String getGlobalIPv6Address() {
+    return globalIPv6Address;
+  }
 
-	public void setIpv6Gateway(String ipv6Gateway) {
-		this.ipv6Gateway = ipv6Gateway;
-	}
+  public void setGlobalIPv6Address(String globalIPv6Address) {
+    this.globalIPv6Address = globalIPv6Address;
+  }
 
-	public String getMacAddress() {
-		return macAddress;
-	}
+  public String getGlobalIPv6PrexixLen() {
+    return globalIPv6PrexixLen;
+  }
 
-	public void setMacAddress(String macAddress) {
-		this.macAddress = macAddress;
-	}
+  public void setGlobalIPv6PrexixLen(String globalIPv6PrexixLen) {
+    this.globalIPv6PrexixLen = globalIPv6PrexixLen;
+  }
 
-	public Map<String, ?> getNetworks() {
-		return networks;
-	}
+  public String getIpAddress() {
+    return ipAddress;
+  }
 
-	public void setNetworks(Map<String, ?> networks) {
-		this.networks = networks;
-	}
+  public void setIpAddress(String ipAddress) {
+    this.ipAddress = ipAddress;
+  }
 
-	public String getBridge() {
-		return bridge;
-	}
+  public Integer getIpPrefixLen() {
+    return ipPrefixLen;
+  }
 
-	public void setBridge(String bridge) {
-		this.bridge = bridge;
-	}
-	
-	
+  public void setIpPrefixLen(Integer ipPrefixLen) {
+    this.ipPrefixLen = ipPrefixLen;
+  }
+
+  public String getIpv6Gateway() {
+    return ipv6Gateway;
+  }
+
+  public void setIpv6Gateway(String ipv6Gateway) {
+    this.ipv6Gateway = ipv6Gateway;
+  }
+
+  public String getMacAddress() {
+    return macAddress;
+  }
+
+  public void setMacAddress(String macAddress) {
+    this.macAddress = macAddress;
+  }
+
+  public Map<String, ?> getNetworks() {
+    return networks;
+  }
+
+  public void setNetworks(Map<String, ?> networks) {
+    this.networks = networks;
+  }
+
+  public String getBridge() {
+    return bridge;
+  }
+
+  public void setBridge(String bridge) {
+    this.bridge = bridge;
+  }
 }

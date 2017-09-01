@@ -1,101 +1,97 @@
 package uk.ac.cam.cl.dtg.teaching.docker.model;
 
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Image {
 
-	@JsonProperty("Created")
-	private Long created;
-	
-	@JsonProperty("Id")
-	private String id;
-	
-	@JsonProperty("ParentId")
-	private String parentId;
-	
-	@JsonProperty("RepoTags")
-	private String[] repoTags;
-	
-	@JsonProperty("Size")
-	private Long size;
-	
-	@JsonProperty("VirtualSize")
-	private Long virtualSize;
+  @JsonProperty("Created")
+  private Long created;
 
-	@JsonProperty("Labels")
-	private Map<String,String> lables;
-		
-	@JsonProperty("RepoDigests")
-	private String[] repoDigests;	
-	
-	public String[] getRepoDigests() {
-		return repoDigests;
-	}
+  @JsonProperty("Id")
+  private String id;
 
-	public void setRepoDigests(String[] repoDigests) {
-		this.repoDigests = repoDigests;
-	}
+  @JsonProperty("ParentId")
+  private String parentId;
 
-	public Map<String,String> getLables() {
-		return lables;
-	}
+  @JsonProperty("RepoTags")
+  private String[] repoTags;
 
-	public void setLables(Map<String,String> lables) {
-		this.lables = lables;
-	}
+  @JsonProperty("Size")
+  private Long size;
 
-	public Long getCreated() {
-		return created;
-	}
+  @JsonProperty("VirtualSize")
+  private Long virtualSize;
 
-	public void setCreated(Long created) {
-		this.created = created;
-	}
+  @JsonProperty("Labels")
+  private Map<String, String> lables;
 
-	public String getId() {
-		return id;
-	}
+  @JsonProperty("RepoDigests")
+  private String[] repoDigests;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+  public String[] getRepoDigests() {
+    return repoDigests;
+  }
 
-	public String getParentId() {
-		return parentId;
-	}
+  public void setRepoDigests(String[] repoDigests) {
+    this.repoDigests = repoDigests;
+  }
 
-	public void setParentId(String parentId) {
-		this.parentId = parentId;
-	}
+  public Map<String, String> getLables() {
+    return lables;
+  }
 
-	public String[] getRepoTags() {
-		return repoTags;
-	}
+  public void setLables(Map<String, String> lables) {
+    this.lables = lables;
+  }
 
-	public void setRepoTags(String[] repoTags) {
-		this.repoTags = repoTags;
-	}
+  public Long getCreated() {
+    return created;
+  }
 
-	public Long getSize() {
-		return size;
-	}
+  public void setCreated(Long created) {
+    this.created = created;
+  }
 
-	public void setSize(Long size) {
-		this.size = size;
-	}
+  public String getId() {
+    return id;
+  }
 
-	public Long getVirtualSize() {
-		return virtualSize;
-	}
+  public void setId(String id) {
+    this.id = id;
+  }
 
-	public void setVirtualSize(Long virtualSize) {
-		this.virtualSize = virtualSize;
-	}
-	
-	
-	
+  public String getParentId() {
+    return parentId;
+  }
+
+  public void setParentId(String parentId) {
+    this.parentId = parentId;
+  }
+
+  public String[] getRepoTags() {
+    return repoTags;
+  }
+
+  public void setRepoTags(String[] repoTags) {
+    this.repoTags = repoTags;
+  }
+
+  public Long getSize() {
+    return size;
+  }
+
+  public void setSize(Long size) {
+    this.size = size;
+  }
+
+  public Long getVirtualSize() {
+    return virtualSize;
+  }
+
+  public void setVirtualSize(Long virtualSize) {
+    this.virtualSize = virtualSize;
+  }
 }

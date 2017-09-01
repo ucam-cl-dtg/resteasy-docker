@@ -3,31 +3,30 @@ package uk.ac.cam.cl.dtg.teaching.docker.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RestartPolicy {
 
-	@JsonProperty("MaximumRetryCount")
-	private Integer maximumRetryCount;
-	
-	@JsonProperty("Name")
-	private String name;
+  @JsonProperty("MaximumRetryCount")
+  private Integer maximumRetryCount;
 
-	public RestartPolicy() {}
-	
-	public Integer getMaximumRetryCount() {
-		return maximumRetryCount;
-	}
+  @JsonProperty("Name")
+  private String name;
 
-	public void setMaximumRetryCount(Integer maximumRetryCount) {
-		this.maximumRetryCount = maximumRetryCount;
-	}
+  public RestartPolicy() {}
 
-	public String getName() {
-		return name;
-	}
+  public Integer getMaximumRetryCount() {
+    return maximumRetryCount;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
+  public void setMaximumRetryCount(Integer maximumRetryCount) {
+    this.maximumRetryCount = maximumRetryCount;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 }

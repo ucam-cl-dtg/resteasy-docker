@@ -1,41 +1,36 @@
 package uk.ac.cam.cl.dtg.teaching.docker.model;
 
-import java.util.Arrays;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Arrays;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ContainerResponse {
 
-	@JsonProperty("Id")
-	private String id;
-	
-	@JsonProperty("Warnings")
-	private String[] warnings;
+  @JsonProperty("Id")
+  private String id;
 
-	public String getId() {
-		return id;
-	}
+  @JsonProperty("Warnings")
+  private String[] warnings;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+  public String getId() {
+    return id;
+  }
 
-	public String[] getWarnings() {
-		return warnings;
-	}
+  public void setId(String id) {
+    this.id = id;
+  }
 
-	public void setWarnings(String[] warnings) {
-		this.warnings = warnings;
-	}
+  public String[] getWarnings() {
+    return warnings;
+  }
 
-	@Override
-	public String toString() {
-		return "ContainerResponse [id=" + id + ", warnings="
-				+ Arrays.toString(warnings) + "]";
-	}
-	
-	
-	
+  public void setWarnings(String[] warnings) {
+    this.warnings = warnings;
+  }
+
+  @Override
+  public String toString() {
+    return "ContainerResponse [id=" + id + ", warnings=" + Arrays.toString(warnings) + "]";
+  }
 }

@@ -1,200 +1,197 @@
 package uk.ac.cam.cl.dtg.teaching.docker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ImageInfo {
 
-		@JsonProperty("Id")
-		private String id;
+  @JsonProperty("Id")
+  private String id;
 
-		@JsonProperty("Container")
-		private String container;
-		
-		@JsonProperty("Comment")
-		private String comment;
-		
-		@JsonProperty("Os")
-		private String os;
-		
-		@JsonProperty("Architecture")
-		private String architecture;
+  @JsonProperty("Container")
+  private String container;
 
-		@JsonProperty("Parent")
-		private String parent;
+  @JsonProperty("Comment")
+  private String comment;
 
-		@JsonProperty("ContainerConfig")
-		private ContainerConfig containerConfig;
+  @JsonProperty("Os")
+  private String os;
 
-		@JsonProperty("DockerVersion")
-		private String dockerVersion;
+  @JsonProperty("Architecture")
+  private String architecture;
 
-		@JsonProperty("VirtualSize")
-		private Long virtualSize;
-		
-		@JsonProperty("Size")
-		private Long size;
+  @JsonProperty("Parent")
+  private String parent;
 
-		@JsonProperty("Author")
-		private String author;
+  @JsonProperty("ContainerConfig")
+  private ContainerConfig containerConfig;
 
-		@JsonProperty("Created")
-		private String created;
-		
-		@JsonProperty("GraphDriver")
-		private Map<String,?> graphDriver;
-		
-		@JsonProperty("RepoDigests")
-		private List<String> repoDigests;
-				
-		@JsonProperty("RepoTags")
-		private List<String> repoTags;
-		
-		@JsonProperty("Config")
-		private ContainerConfig config;
+  @JsonProperty("DockerVersion")
+  private String dockerVersion;
 
-		@JsonProperty("RootFS")
-		private RootFS rootFS;
-			
-		
-		public RootFS getRootFS() {
-			return rootFS;
-		}
+  @JsonProperty("VirtualSize")
+  private Long virtualSize;
 
-		public void setRootFS(RootFS rootFS) {
-			this.rootFS = rootFS;
-		}
+  @JsonProperty("Size")
+  private Long size;
 
-		public String getId() {
-			return id;
-		}
+  @JsonProperty("Author")
+  private String author;
 
-		public void setId(String id) {
-			this.id = id;
-		}
+  @JsonProperty("Created")
+  private String created;
 
-		public String getContainer() {
-			return container;
-		}
+  @JsonProperty("GraphDriver")
+  private Map<String, ?> graphDriver;
 
-		public void setContainer(String container) {
-			this.container = container;
-		}
+  @JsonProperty("RepoDigests")
+  private List<String> repoDigests;
 
-		public String getComment() {
-			return comment;
-		}
+  @JsonProperty("RepoTags")
+  private List<String> repoTags;
 
-		public void setComment(String comment) {
-			this.comment = comment;
-		}
+  @JsonProperty("Config")
+  private ContainerConfig config;
 
-		public String getOs() {
-			return os;
-		}
+  @JsonProperty("RootFS")
+  private RootFS rootFS;
 
-		public void setOs(String os) {
-			this.os = os;
-		}
+  public RootFS getRootFS() {
+    return rootFS;
+  }
 
-		public String getArchitecture() {
-			return architecture;
-		}
+  public void setRootFS(RootFS rootFS) {
+    this.rootFS = rootFS;
+  }
 
-		public void setArchitecture(String architecture) {
-			this.architecture = architecture;
-		}
+  public String getId() {
+    return id;
+  }
 
-		public String getParent() {
-			return parent;
-		}
+  public void setId(String id) {
+    this.id = id;
+  }
 
-		public void setParent(String parent) {
-			this.parent = parent;
-		}
+  public String getContainer() {
+    return container;
+  }
 
-		public ContainerConfig getContainerConfig() {
-			return containerConfig;
-		}
+  public void setContainer(String container) {
+    this.container = container;
+  }
 
-		public void setContainerConfig(ContainerConfig containerConfig) {
-			this.containerConfig = containerConfig;
-		}
+  public String getComment() {
+    return comment;
+  }
 
-		public String getDockerVersion() {
-			return dockerVersion;
-		}
+  public void setComment(String comment) {
+    this.comment = comment;
+  }
 
-		public void setDockerVersion(String dockerVersion) {
-			this.dockerVersion = dockerVersion;
-		}
+  public String getOs() {
+    return os;
+  }
 
-		public Long getVirtualSize() {
-			return virtualSize;
-		}
+  public void setOs(String os) {
+    this.os = os;
+  }
 
-		public void setVirtualSize(Long virtualSize) {
-			this.virtualSize = virtualSize;
-		}
+  public String getArchitecture() {
+    return architecture;
+  }
 
-		public Long getSize() {
-			return size;
-		}
+  public void setArchitecture(String architecture) {
+    this.architecture = architecture;
+  }
 
-		public void setSize(Long size) {
-			this.size = size;
-		}
+  public String getParent() {
+    return parent;
+  }
 
-		public String getAuthor() {
-			return author;
-		}
+  public void setParent(String parent) {
+    this.parent = parent;
+  }
 
-		public void setAuthor(String author) {
-			this.author = author;
-		}
+  public ContainerConfig getContainerConfig() {
+    return containerConfig;
+  }
 
-		public String getCreated() {
-			return created;
-		}
+  public void setContainerConfig(ContainerConfig containerConfig) {
+    this.containerConfig = containerConfig;
+  }
 
-		public void setCreated(String created) {
-			this.created = created;
-		}
+  public String getDockerVersion() {
+    return dockerVersion;
+  }
 
-		public Map<String, ?> getGraphDriver() {
-			return graphDriver;
-		}
+  public void setDockerVersion(String dockerVersion) {
+    this.dockerVersion = dockerVersion;
+  }
 
-		public void setGraphDriver(Map<String, ?> graphDriver) {
-			this.graphDriver = graphDriver;
-		}
+  public Long getVirtualSize() {
+    return virtualSize;
+  }
 
-		public List<String> getRepoDigests() {
-			return repoDigests;
-		}
+  public void setVirtualSize(Long virtualSize) {
+    this.virtualSize = virtualSize;
+  }
 
-		public void setRepoDigests(List<String> repoDigests) {
-			this.repoDigests = repoDigests;
-		}
+  public Long getSize() {
+    return size;
+  }
 
-		public List<String> getRepoTags() {
-			return repoTags;
-		}
+  public void setSize(Long size) {
+    this.size = size;
+  }
 
-		public void setRepoTags(List<String> repoTags) {
-			this.repoTags = repoTags;
-		}
+  public String getAuthor() {
+    return author;
+  }
 
-		public ContainerConfig getConfig() {
-			return config;
-		}
+  public void setAuthor(String author) {
+    this.author = author;
+  }
 
-		public void setConfig(ContainerConfig config) {
-			this.config = config;
-		}
-		
+  public String getCreated() {
+    return created;
+  }
+
+  public void setCreated(String created) {
+    this.created = created;
+  }
+
+  public Map<String, ?> getGraphDriver() {
+    return graphDriver;
+  }
+
+  public void setGraphDriver(Map<String, ?> graphDriver) {
+    this.graphDriver = graphDriver;
+  }
+
+  public List<String> getRepoDigests() {
+    return repoDigests;
+  }
+
+  public void setRepoDigests(List<String> repoDigests) {
+    this.repoDigests = repoDigests;
+  }
+
+  public List<String> getRepoTags() {
+    return repoTags;
+  }
+
+  public void setRepoTags(List<String> repoTags) {
+    this.repoTags = repoTags;
+  }
+
+  public ContainerConfig getConfig() {
+    return config;
+  }
+
+  public void setConfig(ContainerConfig config) {
+    this.config = config;
+  }
 }

@@ -3,110 +3,105 @@ package uk.ac.cam.cl.dtg.teaching.docker.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Version {
 
-	@JsonProperty("Version")
-	private String version;
+  @JsonProperty("Version")
+  private String version;
 
-	@JsonProperty("Os")
-	private String os;
-	
-	@JsonProperty("KernelVersion")
-	private String kernelVersion;
+  @JsonProperty("Os")
+  private String os;
 
-	@JsonProperty("GoVersion")
-	private String goVersion;
+  @JsonProperty("KernelVersion")
+  private String kernelVersion;
 
-	@JsonProperty("GitCommit")
-	private String gitCommit;
+  @JsonProperty("GoVersion")
+  private String goVersion;
 
-	@JsonProperty("Arch")
-	private String arch;
-		
-	@JsonProperty("ApiVersion")
-	private String apiVersion;
-	
-	@JsonProperty("Experimental")
-	private boolean experimental;
+  @JsonProperty("GitCommit")
+  private String gitCommit;
 
-	@JsonProperty("BuildTime")
-	private String buildTime;
-	
-	
-	
-	public String getBuildTime() {
-		return buildTime;
-	}
+  @JsonProperty("Arch")
+  private String arch;
 
-	public void setBuildTime(String buildTime) {
-		this.buildTime = buildTime;
-	}
+  @JsonProperty("ApiVersion")
+  private String apiVersion;
 
-	public boolean isExperimental() {
-		return experimental;
-	}
+  @JsonProperty("Experimental")
+  private boolean experimental;
 
-	public void setExperimental(boolean experimental) {
-		this.experimental = experimental;
-	}
+  @JsonProperty("BuildTime")
+  private String buildTime;
 
-	public String getOs() {
-		return os;
-	}
+  public String getBuildTime() {
+    return buildTime;
+  }
 
-	public void setOs(String os) {
-		this.os = os;
-	}
+  public void setBuildTime(String buildTime) {
+    this.buildTime = buildTime;
+  }
 
-	public String getKernelVersion() {
-		return kernelVersion;
-	}
+  public boolean isExperimental() {
+    return experimental;
+  }
 
-	public void setKernelVersion(String kernelVersion) {
-		this.kernelVersion = kernelVersion;
-	}
+  public void setExperimental(boolean experimental) {
+    this.experimental = experimental;
+  }
 
-	public String getArch() {
-		return arch;
-	}
+  public String getOs() {
+    return os;
+  }
 
-	public void setArch(String arch) {
-		this.arch = arch;
-	}
+  public void setOs(String os) {
+    this.os = os;
+  }
 
-	public String getApiVersion() {
-		return apiVersion;
-	}
+  public String getKernelVersion() {
+    return kernelVersion;
+  }
 
-	public void setApiVersion(String apiVersion) {
-		this.apiVersion = apiVersion;
-	}
+  public void setKernelVersion(String kernelVersion) {
+    this.kernelVersion = kernelVersion;
+  }
 
-	public String getVersion() {
-		return version;
-	}
+  public String getArch() {
+    return arch;
+  }
 
-	public void setVersion(String version) {
-		this.version = version;
-	}
+  public void setArch(String arch) {
+    this.arch = arch;
+  }
 
-	public String getGitCommit() {
-		return gitCommit;
-	}
+  public String getApiVersion() {
+    return apiVersion;
+  }
 
-	public void setGitCommit(String gitCommit) {
-		this.gitCommit = gitCommit;
-	}
+  public void setApiVersion(String apiVersion) {
+    this.apiVersion = apiVersion;
+  }
 
-	public String getGoVersion() {
-		return goVersion;
-	}
+  public String getVersion() {
+    return version;
+  }
 
-	public void setGoVersion(String goVersion) {
-		this.goVersion = goVersion;
-	}
-	
-	
-	
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+  public String getGitCommit() {
+    return gitCommit;
+  }
+
+  public void setGitCommit(String gitCommit) {
+    this.gitCommit = gitCommit;
+  }
+
+  public String getGoVersion() {
+    return goVersion;
+  }
+
+  public void setGoVersion(String goVersion) {
+    this.goVersion = goVersion;
+  }
 }
