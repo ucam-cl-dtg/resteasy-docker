@@ -3,7 +3,7 @@ package uk.ac.cam.cl.dtg.teaching.docker.api;
 import java.util.concurrent.Future;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketListener;
-import uk.ac.cam.cl.dtg.teaching.docker.APIUnavailableException;
+import uk.ac.cam.cl.dtg.teaching.docker.ApiUnavailableException;
 
 public interface DockerWsApi {
   public Future<Session> attach(
@@ -14,7 +14,7 @@ public interface DockerWsApi {
       boolean stderr,
       boolean stdin,
       WebSocketListener listener)
-      throws APIUnavailableException;
+      throws ApiUnavailableException;
 
   public void close();
 }

@@ -31,7 +31,7 @@ public class ContainerState {
   @JsonProperty("Restarting")
   private boolean restarting;
 
-  /** Set to true if this container is running and false if it is stopped */
+  /** Set to true if this container is running and false if it is stopped. */
   @JsonProperty("Running")
   private Boolean running;
 

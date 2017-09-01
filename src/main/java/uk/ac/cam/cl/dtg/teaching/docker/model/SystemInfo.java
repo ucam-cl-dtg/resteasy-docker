@@ -105,16 +105,16 @@ public class SystemInfo {
   private Boolean memoryLimit;
 
   @JsonProperty("NCPU")
-  private Integer nCPU;
+  private Integer numCpu;
 
   @JsonProperty("NEventsListener")
-  private Integer nEventsListener;
+  private Integer numEventsListener;
 
   @JsonProperty("NFd")
-  private Integer nFd;
+  private Integer numFd;
 
   @JsonProperty("NGoroutines")
-  private Integer nGoroutines;
+  private Integer numGoroutines;
 
   @JsonProperty("Name")
   private String name;
@@ -405,36 +405,36 @@ public class SystemInfo {
     this.memoryLimit = memoryLimit;
   }
 
-  public Integer getnCPU() {
-    return nCPU;
+  public Integer getNumCpu() {
+    return numCpu;
   }
 
-  public void setnCPU(Integer nCPU) {
-    this.nCPU = nCPU;
+  public void setNumCpu(Integer numCpu) {
+    this.numCpu = numCpu;
   }
 
-  public Integer getnEventsListener() {
-    return nEventsListener;
+  public Integer getNumEventsListener() {
+    return numEventsListener;
   }
 
-  public void setnEventsListener(Integer nEventsListener) {
-    this.nEventsListener = nEventsListener;
+  public void setNumEventsListener(Integer numEventsListener) {
+    this.numEventsListener = numEventsListener;
   }
 
-  public Integer getnFd() {
-    return nFd;
+  public Integer getNumFd() {
+    return numFd;
   }
 
-  public void setnFd(Integer nFd) {
-    this.nFd = nFd;
+  public void setNumFd(Integer numFd) {
+    this.numFd = numFd;
   }
 
-  public Integer getnGoroutines() {
-    return nGoroutines;
+  public Integer getNumGoroutines() {
+    return numGoroutines;
   }
 
-  public void setnGoroutines(Integer nGoroutines) {
-    this.nGoroutines = nGoroutines;
+  public void setNumGoroutines(Integer numGoroutines) {
+    this.numGoroutines = numGoroutines;
   }
 
   public String getName() {

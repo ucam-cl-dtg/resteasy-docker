@@ -36,7 +36,7 @@ public class ContainerConfig {
   @JsonProperty("Tty")
   private Boolean tty;
 
-  /** Boolean value, opens stdin, */
+  /** Boolean value, opens stdin. */
   @JsonProperty("OpenStdin")
   private Boolean openStdin;
 
@@ -44,7 +44,7 @@ public class ContainerConfig {
   @JsonProperty("StdinOnce")
   private Boolean stdinOnce;
 
-  /** A list of environment variables in the form of ["VAR=value"[,"VAR2=value2"]] */
+  /** A list of environment variables in the form of ["VAR=value"[,"VAR2=value2"]]. */
   @JsonProperty("Env")
   private List<String> env;
 
@@ -72,7 +72,7 @@ public class ContainerConfig {
   @JsonProperty("WorkingDir")
   private String workingDir = "";
 
-  /** Boolean value, when true disables networking for the container */
+  /** Boolean value, when true disables networking for the container. */
   @JsonProperty("NetworkDisabled")
   private Boolean networkDisabled;
 
@@ -80,8 +80,8 @@ public class ContainerConfig {
   private String macAddress;
 
   /**
-   * An object mapping ports to an empty object in the form of: "ExposedPorts": { "<port>/<tcp|udp>:
-   * {}" }
+   * An object mapping ports to an empty object in the form of:
+   * "ExposedPorts": { "&lt;port>/&lt;tcp|udp>: {}" }.
    */
   @JsonProperty("ExposedPorts")
   private Map<String, ?> exposedPorts;

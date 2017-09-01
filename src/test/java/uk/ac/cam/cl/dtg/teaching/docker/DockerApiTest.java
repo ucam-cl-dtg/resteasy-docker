@@ -24,7 +24,7 @@ public class DockerApiTest {
     Docker docker = new Docker("localhost", 2375, 10);
     api =
         docker.api(
-            new APIListener() {
+            new ApiListener() {
 
               @Override
               public void callCompleted(boolean apiAvailable, long timeTaken, String methodName) {}
@@ -62,17 +62,17 @@ public class DockerApiTest {
   }
 
   @Test
-  public void testVersion() throws APIUnavailableException {
+  public void testVersion() throws ApiUnavailableException {
     api.getVersion();
   }
 
   @Test
-  public void testCreateDeleteContainer() throws IOException, APIUnavailableException {
+  public void testCreateDeleteContainer() throws IOException, ApiUnavailableException {
     try (CreatedContainer c = createContainer()) {}
   }
 
   @Test
-  public void testListContainers() throws IOException, APIUnavailableException {
+  public void testListContainers() throws IOException, ApiUnavailableException {
     boolean found = false;
     try (CreatedContainer created = createContainer()) {
       List<Container> containers = api.listContainers(true, null, null, null, null);
@@ -84,14 +84,14 @@ public class DockerApiTest {
   }
 
   @Test
-  public void testStartContainer() throws IOException, APIUnavailableException {
+  public void testStartContainer() throws IOException, ApiUnavailableException {
     try (CreatedContainer created = createContainer()) {
       api.startContainer(created.getId());
     }
   }
 
   @Test
-  public void testInspectContainer() throws IOException, APIUnavailableException {
+  public void testInspectContainer() throws IOException, ApiUnavailableException {
     try (CreatedContainer created = createContainer()) {
       ContainerInfo info = api.inspectContainer(created.getId(), null);
       Assert.assertEquals(
@@ -102,14 +102,14 @@ public class DockerApiTest {
   }
 
   @Test
-  public void testCommitContainer() throws IOException, APIUnavailableException {
+  public void testCommitContainer() throws IOException, ApiUnavailableException {
     try (CreatedContainer created = createContainer()) {
       try (CreatedImage image = commitContainer(created)) {}
     }
   }
 
   @Test
-  public void testListImages() throws IOException, APIUnavailableException {
+  public void testListImages() throws IOException, ApiUnavailableException {
     boolean found = false;
     try (CreatedContainer created = createContainer()) {
       try (CreatedImage image = commitContainer(created)) {
@@ -123,7 +123,7 @@ public class DockerApiTest {
   }
 
   @Test
-  public void testInspectImage() throws IOException, APIUnavailableException {
+  public void testInspectImage() throws IOException, ApiUnavailableException {
     try (CreatedContainer created = createContainer()) {
       try (CreatedImage image = commitContainer(created)) {
         api.inspectImage(image.getId());
@@ -131,14 +131,14 @@ public class DockerApiTest {
     }
   }
 
-  private CreatedImage commitContainer(CreatedContainer created) throws APIUnavailableException {
+  private CreatedImage commitContainer(CreatedContainer created) throws ApiUnavailableException {
     String tag = UUID.randomUUID().toString();
     ContainerConfig config = new ContainerConfig();
     return new CreatedImage(
         api.commitContainer(created.getId(), "unittest", tag, null, null, config));
   }
 
-  private CreatedContainer createContainer() throws APIUnavailableException {
+  private CreatedContainer createContainer() throws ApiUnavailableException {
     String name = UUID.randomUUID().toString();
     ContainerConfig config = new ContainerConfig();
     config.setCmd(Arrays.asList("/bin/echo", "hello"));
@@ -161,7 +161,7 @@ public class DockerApiTest {
     public void close() throws IOException {
       try {
         api.deleteImage(id, true, false);
-      } catch (APIUnavailableException e) {
+      } catch (ApiUnavailableException e) {
         throw new IOException(e);
       }
     }
@@ -188,7 +188,7 @@ public class DockerApiTest {
     public void close() throws IOException {
       try {
         api.deleteContainer(id, true, true);
-      } catch (APIUnavailableException e) {
+      } catch (ApiUnavailableException e) {
         throw new IOException(e);
       }
     }

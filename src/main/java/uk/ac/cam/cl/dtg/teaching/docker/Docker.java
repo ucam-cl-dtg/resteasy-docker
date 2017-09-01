@@ -36,7 +36,7 @@ public class Docker {
     wsApiImpl = new DockerWsApiImpl(hostname, port);
   }
 
-  public DockerApi api(final APIListener listener) {
+  public DockerApi api(final ApiListener listener) {
     final DockerRestApi dockerProxy = webTarget.proxy(DockerRestApi.class);
     DockerApi proxy =
         (DockerApi)
@@ -48,7 +48,7 @@ public class Docker {
                   public Object invoke(Object proxy, Method method, Object[] args)
                       throws Throwable {
                     long startTime = System.currentTimeMillis();
-                    boolean apiOK = true;
+                    boolean apiOk = true;
                     String methodName = method.getName();
                     try {
                       if (methodName.equals("attach") || methodName.equals("close")) {
@@ -65,15 +65,15 @@ public class Docker {
                       }
                       if (t instanceof ProcessingException) {
                         if (t.getCause() instanceof SocketException) {
-                          apiOK = false;
-                          throw new APIUnavailableException(
+                          apiOk = false;
+                          throw new ApiUnavailableException(
                               "Unable to connect to the Docker API", t.getCause());
                         }
                       }
                       throw t;
                     } finally {
                       long duration = System.currentTimeMillis() - startTime;
-                      listener.callCompleted(apiOK, duration, methodName);
+                      listener.callCompleted(apiOk, duration, methodName);
                     }
                   }
                 });

@@ -1,6 +1,6 @@
 package uk.ac.cam.cl.dtg.teaching.docker;
 
-public interface APIListener {
+public interface ApiListener {
 
   public void callCompleted(boolean apiAvailable, long timeTaken, String methodName);
 }

@@ -1,24 +1,24 @@
 package uk.ac.cam.cl.dtg.teaching.docker;
 
-public class APIUnavailableException extends Exception {
+public class ApiUnavailableException extends Exception {
 
   private static final long serialVersionUID = 1L;
 
-  public APIUnavailableException() {}
+  public ApiUnavailableException() {}
 
-  public APIUnavailableException(String message) {
+  public ApiUnavailableException(String message) {
     super(message);
   }
 
-  public APIUnavailableException(Throwable cause) {
+  public ApiUnavailableException(Throwable cause) {
     super(cause);
   }
 
-  public APIUnavailableException(String message, Throwable cause) {
+  public ApiUnavailableException(String message, Throwable cause) {
     super(message, cause);
   }
 
-  public APIUnavailableException(
+  public ApiUnavailableException(
       String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
     super(message, cause, enableSuppression, writableStackTrace);
   }

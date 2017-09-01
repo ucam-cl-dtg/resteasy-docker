@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RootFS {
+public class RootFs {
 
   @JsonProperty("Type")
   private String type;

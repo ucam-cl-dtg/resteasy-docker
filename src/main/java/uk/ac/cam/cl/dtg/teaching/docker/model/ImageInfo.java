@@ -57,14 +57,14 @@ public class ImageInfo {
   private ContainerConfig config;
 
   @JsonProperty("RootFS")
-  private RootFS rootFS;
+  private RootFs rootFs;
 
-  public RootFS getRootFS() {
-    return rootFS;
+  public RootFs getRootFs() {
+    return rootFs;
   }
 
-  public void setRootFS(RootFS rootFS) {
-    this.rootFS = rootFS;
+  public void setRootFs(RootFs rootFs) {
+    this.rootFs = rootFs;
   }
 
   public String getId() {

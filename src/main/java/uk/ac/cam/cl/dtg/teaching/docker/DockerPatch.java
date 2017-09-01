@@ -19,7 +19,7 @@ public class DockerPatch {
   private static final Logger log = LoggerFactory.getLogger(DockerPatch.class);
 
   public static void deleteContainer(DockerApi api, String id, Boolean force, Boolean removeVolumes)
-      throws APIUnavailableException {
+      throws ApiUnavailableException {
     for (int retry = 1; retry <= 5; ++retry) {
       try {
         api.deleteContainer(id, force, removeVolumes);
@@ -39,7 +39,7 @@ public class DockerPatch {
     }
   }
 
-  private static void removeContainerMounts(String containerID) {
+  private static void removeContainerMounts(String containerId) {
     // A map sorted by longest string first.  This means when we umount we will remove over-mounts
     // first
     Set<String> mountPoints =
@@ -49,8 +49,12 @@ public class DockerPatch {
               public int compare(String o1, String o2) {
                 int l1 = o1.length();
                 int l2 = o2.length();
-                if (l1 > l2) return -1;
-                if (l1 < l2) return 1;
+                if (l1 > l2) {
+                  return -1;
+                }
+                if (l1 < l2) {
+                  return 1;
+                }
                 return o1.compareTo(o2);
               }
             });
@@ -59,17 +63,17 @@ public class DockerPatch {
       while ((line = r.readLine()) != null) {
         String[] fields = line.split(" ");
         String mountPoint = fields[1];
-        if (mountPoint.contains(containerID)) {
+        if (mountPoint.contains(containerId)) {
           mountPoints.add(mountPoint);
         }
       }
     } catch (IOException e) {
-      log.error("IOException reading mounts for container " + containerID, e);
+      log.error("IOException reading mounts for container " + containerId, e);
       return;
     }
 
     if (mountPoints.size() > 0) {
-      log.info("Removing {} stale mountpoints for {}", mountPoints.size(), containerID);
+      log.info("Removing {} stale mountpoints for {}", mountPoints.size(), containerId);
       for (String mountPoint : mountPoints) {
         ProcessBuilder b = new ProcessBuilder("sudo", "/bin/umount", mountPoint);
         try {

@@ -110,11 +110,11 @@ public class ContainerHostConfig {
   @JsonProperty("Dns")
   private List<String> dns;
 
-  /** A list of DNS options */
+  /** A list of DNS options. */
   @JsonProperty("DnsOptions")
   private List<String> dnsOptions;
 
-  /** A list of DNS search domains */
+  /** A list of DNS search domains. */
   @JsonProperty("DnsSearch")
   private List<String> dnsSearch;
 
@@ -126,8 +126,8 @@ public class ContainerHostConfig {
   private String extraHosts;
 
   /**
-   * A list of volumes to inherit from another container. Specified in the form <container
-   * name>[:<ro|rw>]
+   * A list of volumes to inherit from another container. Specified in the form
+   * &lt;container name>[:&lt;ro|rw>]
    */
   @JsonProperty("VolumesFrom")
   private List<String> volumesFrom;
@@ -153,7 +153,7 @@ public class ContainerHostConfig {
 
   /**
    * Sets the networking mode for the container. Supported values are: bridge, host, and
-   * container:<name|id>
+   * container:&lt;name|id>
    */
   @JsonProperty("NetworkMode")
   private String networkMode;
@@ -161,16 +161,16 @@ public class ContainerHostConfig {
   /**
    * A list of devices to add to the container specified as a JSON object in the form {
    * "PathOnHost": "/dev/deviceName", "PathInContainer": "/dev/deviceName", "CgroupPermissions":
-   * "mrw"}
+   * "mrw"}.
    */
   @JsonProperty("Devices")
   private List<String> devices;
 
-  /** A list of ulimits to set in the container */
+  /** A list of ulimits to set in the container. */
   @JsonProperty("Ulimits")
   private List<Ulimit> ulimits;
 
-  /** Log configuration for the container, */
+  /** Log configuration for the container. */
   @JsonProperty("LogConfig")
   private LogConfig logConfig;
 
@@ -191,7 +191,7 @@ public class ContainerHostConfig {
   private String volumeDriver;
 
   @JsonProperty("ContainerIDFile")
-  private String containerIDFile;
+  private String containerIdFile;
 
   @JsonProperty("IpcMode")
   private String ipcMode;
@@ -457,12 +457,12 @@ public class ContainerHostConfig {
     this.ipcMode = ipcMode;
   }
 
-  public String getContainerIDFile() {
-    return containerIDFile;
+  public String getContainerIdFile() {
+    return containerIdFile;
   }
 
-  public void setContainerIDFile(String containerIDFile) {
-    this.containerIDFile = containerIDFile;
+  public void setContainerIdFile(String containerIdFile) {
+    this.containerIdFile = containerIdFile;
   }
 
   public List<String> getBinds() {

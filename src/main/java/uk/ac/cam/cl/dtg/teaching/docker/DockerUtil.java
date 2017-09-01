@@ -24,7 +24,7 @@ public class DockerUtil {
   }
 
   public static void deleteContainerByName(String name, DockerApi docker)
-      throws APIUnavailableException {
+      throws ApiUnavailableException {
     List<Container> containers = docker.listContainers(true, null, null, null, null);
     for (Container container : containers) {
       String[] names = container.getNames();
@@ -34,37 +34,26 @@ public class DockerUtil {
     }
   }
 
-  /**
-   * Wait until a container is running
-   *
-   * @param containerID
-   * @param docker
-   * @return
-   * @throws APIUnavailableException
-   */
-  public static boolean waitRunning(String containerID, DockerApi docker)
-      throws APIUnavailableException {
+  /** Wait until a container is running. */
+  public static boolean waitRunning(String containerId, DockerApi docker)
+      throws ApiUnavailableException {
     try {
       for (int i = 0; i < 5; ++i) {
-        ContainerInfo info = docker.inspectContainer(containerID, null);
-        if (info.getState().getPid() != 0) return true;
+        ContainerInfo info = docker.inspectContainer(containerId, null);
+        if (info.getState().getPid() != 0) {
+          return true;
+        }
         Thread.sleep(1000);
       }
     } catch (InterruptedException e) {
+      // ignore
     }
     return false;
   }
 
-  /**
-   * Kill a container
-   *
-   * @param containerId of the container to kill
-   * @param docker an instance of the DockerApi
-   * @return true if the container was still runnning or false if it was not
-   * @throws APIUnavailableException
-   */
+  /** Kill a container. */
   public static boolean killContainer(String containerId, DockerApi docker)
-      throws APIUnavailableException {
+      throws ApiUnavailableException {
     try {
       docker.killContainer(containerId, "SIGKILL");
       return true;
@@ -79,16 +68,9 @@ public class DockerUtil {
     }
   }
 
-  /**
-   * Inspect a container
-   *
-   * @param containerId of the container to inspect
-   * @param docker an instance of the DockerApi
-   * @return a ContainerInfo object or null if the container does not exist
-   * @throws APIUnavailableException
-   */
+  /** Inspect a container. */
   public static ContainerInfo inspectContainer(
-      String containerId, Boolean showSize, DockerApi docker) throws APIUnavailableException {
+      String containerId, Boolean showSize, DockerApi docker) throws ApiUnavailableException {
     try {
       return docker.inspectContainer(containerId, showSize);
     } catch (RuntimeException e) {
@@ -97,6 +79,26 @@ public class DockerUtil {
       }
       throw e;
     }
+  }
+
+  public static String attachAndWait(String cmd, String stdin, String image, DockerApi docker)
+      throws ApiUnavailableException {
+    String name = UUID.randomUUID().toString();
+    ContainerConfig config = new ContainerConfig();
+    config.setOpenStdin(true);
+    config.setCmd(Arrays.asList("/bin/bash", "-c", cmd));
+    config.setImage(image);
+    StringBuffer output = new StringBuffer();
+    ContainerResponse createResponse = docker.createContainer(name, config);
+    try {
+      docker.startContainer(createResponse.getId());
+      AttachListener l = new AttachListener(output, stdin);
+      docker.attach(createResponse.getId(), true, true, true, true, true, l);
+      docker.waitContainer(createResponse.getId());
+    } finally {
+      DockerPatch.deleteContainer(docker, createResponse.getId(), true, true);
+    }
+    return output.toString();
   }
 
   private static class AttachListener implements WebSocketListener {
@@ -134,25 +136,5 @@ public class DockerUtil {
     public void onWebSocketText(String message) {
       output.append(message);
     }
-  }
-
-  public static String attachAndWait(String cmd, String stdin, String image, DockerApi docker)
-      throws APIUnavailableException {
-    String name = UUID.randomUUID().toString();
-    ContainerConfig config = new ContainerConfig();
-    config.setOpenStdin(true);
-    config.setCmd(Arrays.asList("/bin/bash", "-c", cmd));
-    config.setImage(image);
-    StringBuffer output = new StringBuffer();
-    ContainerResponse createResponse = docker.createContainer(name, config);
-    try {
-      docker.startContainer(createResponse.getId());
-      AttachListener l = new AttachListener(output, stdin);
-      docker.attach(createResponse.getId(), true, true, true, true, true, l);
-      docker.waitContainer(createResponse.getId());
-    } finally {
-      DockerPatch.deleteContainer(docker, createResponse.getId(), true, true);
-    }
-    return output.toString();
   }
 }
