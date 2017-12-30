@@ -3,7 +3,7 @@
   <groupId>uk.ac.cam.cl.dtg.web</groupId>
   <artifactId>resteasy-docker</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.5</version>
+  <version>1.0.6-SNAPSHOT</version>
   <name>resteasy-docker</name>
 
   <properties>
@@ -14,7 +14,7 @@
   <scm>
     <developerConnection>scm:git:ssh://git@github.com/ucam-cl-dtg/resteasy-docker.git
     </developerConnection>
-    <tag>resteasy-docker-1.0.5</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <dependencies>
