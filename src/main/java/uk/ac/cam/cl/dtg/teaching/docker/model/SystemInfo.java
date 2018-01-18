@@ -93,7 +93,7 @@ public class SystemInfo {
   private String kernelVersion;
 
   @JsonProperty("Labels")
-  private String labels;
+  private List<String> labels;
 
   @JsonProperty("LoggingDriver")
   private String loggingDriver;
@@ -373,11 +373,11 @@ public class SystemInfo {
     this.kernelVersion = kernelVersion;
   }
 
-  public String getLabels() {
+  public List<String> getLabels() {
     return labels;
   }
 
-  public void setLabels(String labels) {
+  public void setLabels(List<String> labels) {
     this.labels = labels;
   }
 

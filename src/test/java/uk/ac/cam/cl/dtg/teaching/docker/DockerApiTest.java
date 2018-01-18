@@ -14,6 +14,7 @@ import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerConfig;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerInfo;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerResponse;
 import uk.ac.cam.cl.dtg.teaching.docker.model.Image;
+import uk.ac.cam.cl.dtg.teaching.docker.model.SystemInfo;
 
 public class DockerApiTest {
 
@@ -29,6 +30,11 @@ public class DockerApiTest {
               @Override
               public void callCompleted(boolean apiAvailable, long timeTaken, String methodName) {}
             });
+  }
+
+  @Test
+  public void testSystemInfo() throws ApiUnavailableException {
+    SystemInfo systemInfo = api.systemInfo();
   }
 
   @Test
