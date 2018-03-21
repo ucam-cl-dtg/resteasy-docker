@@ -16,7 +16,7 @@ public class ContainerState {
   private String finishedAt;
 
   @JsonProperty("OOMKilled")
-  private String oomKilled;
+  private Boolean oomKilled;
 
   /**
    * Set to true if this container is in the paused state. You can only pause/unpause a running
@@ -76,11 +76,11 @@ public class ContainerState {
     this.finishedAt = finishedAt;
   }
 
-  public String getOomKilled() {
+  public Boolean getOomKilled() {
     return oomKilled;
   }
 
-  public void setOomKilled(String oomKilled) {
+  public void setOomKilled(Boolean oomKilled) {
     this.oomKilled = oomKilled;
   }
 
