@@ -22,7 +22,7 @@ public class Container {
   private String[] names;
 
   @JsonProperty("Ports")
-  private int[] ports;
+  private Port[] ports;
 
   @JsonProperty("Status")
   private String status;
@@ -30,7 +30,7 @@ public class Container {
   public Container() {}
 
   public Container(
-      String command, long created, String id, String image, String[] names, int[] ports) {
+      String command, long created, String id, String image, String[] names, Port[] ports) {
     super();
     this.command = command;
     this.created = created;
@@ -80,11 +80,11 @@ public class Container {
     this.names = names;
   }
 
-  public int[] getPorts() {
+  public Port[] getPorts() {
     return ports;
   }
 
-  public void setPorts(int[] ports) {
+  public void setPorts(Port[] ports) {
     this.ports = ports;
   }
 
