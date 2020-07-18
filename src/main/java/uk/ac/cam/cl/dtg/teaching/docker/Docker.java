@@ -5,6 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.net.SocketException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.WebApplicationException;
 import org.apache.http.client.HttpClient;
@@ -16,6 +18,7 @@ import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.jboss.resteasy.client.jaxrs.engines.ApacheHttpClient4Engine;
 import uk.ac.cam.cl.dtg.teaching.docker.api.DockerApi;
 import uk.ac.cam.cl.dtg.teaching.docker.api.DockerRestApi;
+import uk.ac.cam.cl.dtg.teaching.docker.api.DockerWsApi;
 import uk.ac.cam.cl.dtg.teaching.docker.api.DockerWsApiImpl;
 
 public class Docker {
@@ -30,10 +33,11 @@ public class Docker {
     cm.setMaxTotal(maxConnections);
     HttpClient httpClient = new DefaultHttpClient(cm);
     ApacheHttpClient4Engine engine = new ApacheHttpClient4Engine(httpClient);
+    ExecutorService executorService = Executors.newCachedThreadPool();
     ResteasyClient c =
-        new ResteasyClientBuilder().maxPooledPerRoute(maxConnections).httpEngine(engine).build();
+        new ResteasyClientBuilder().httpEngine(engine).asyncExecutor(executorService).build();
     webTarget = c.target("http://" + hostname + ":" + port + "/v1.21");
-    wsApiImpl = new DockerWsApiImpl(hostname, port);
+    wsApiImpl = new DockerWsApiImpl(hostname, port, httpClient);
   }
 
   public DockerApi api(final ApiListener listener) {
