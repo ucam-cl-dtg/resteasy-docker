@@ -37,7 +37,7 @@ public class Docker {
     ResteasyClient c =
         new ResteasyClientBuilder().httpEngine(engine).asyncExecutor(executorService).build();
     webTarget = c.target("http://" + hostname + ":" + port + "/v1.21");
-    wsApiImpl = new DockerWsApiImpl(hostname, port, httpClient);
+    wsApiImpl = new DockerWsApiImpl(hostname, port);
   }
 
   public DockerApi api(final ApiListener listener) {
