@@ -49,9 +49,8 @@ public class Docker {
                       throws Throwable {
                     long startTime = System.currentTimeMillis();
                     boolean apiOk = true;
-                    String methodName = method.getName();
                     try {
-                      if (methodName.equals("attach") || methodName.equals("close")) {
+                      if (method.getDeclaringClass() == DockerWsApi.class) {
                         return method.invoke(wsApiImpl, args);
                       } else {
                         return method.invoke(dockerProxy, args);
@@ -73,7 +72,7 @@ public class Docker {
                       throw t;
                     } finally {
                       long duration = System.currentTimeMillis() - startTime;
-                      listener.callCompleted(apiOk, duration, methodName);
+                      listener.callCompleted(apiOk, duration, method.getName());
                     }
                   }
                 });
