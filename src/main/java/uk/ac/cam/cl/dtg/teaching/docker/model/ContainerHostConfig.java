@@ -126,8 +126,8 @@ public class ContainerHostConfig {
   private String extraHosts;
 
   /**
-   * A list of volumes to inherit from another container. Specified in the form
-   * &lt;container name>[:&lt;ro|rw>]
+   * A list of volumes to inherit from another container. Specified in the form &lt;container
+   * name>[:&lt;ro|rw>]
    */
   @JsonProperty("VolumesFrom")
   private List<String> volumesFrom;

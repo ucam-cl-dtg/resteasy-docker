@@ -38,5 +38,4 @@ public class Port {
   public void setType(String type) {
     this.type = type;
   }
-
 }

@@ -3,6 +3,7 @@ package uk.ac.cam.cl.dtg.teaching.docker.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/** Model for a container. */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Container {
 
@@ -29,6 +30,7 @@ public class Container {
 
   public Container() {}
 
+  /** Create a new Container object. */
   public Container(
       String command, long created, String id, String image, String[] names, Port[] ports) {
     super();

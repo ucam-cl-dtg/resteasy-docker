@@ -11,6 +11,7 @@ import org.eclipse.jetty.websocket.client.WebSocketClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/** Implementation of the web service API interface. */
 public class DockerWsApiImpl implements DockerWsApi {
 
   private static final Logger LOG = LoggerFactory.getLogger(DockerWsApiImpl.class);
@@ -19,6 +20,7 @@ public class DockerWsApiImpl implements DockerWsApi {
   private int port;
   private WebSocketClient client;
 
+  /** Constructs a new instance which attempts to connect to the given hostname and port. */
   public DockerWsApiImpl(String hostname, int port) {
     this.hostname = hostname;
     this.port = port;
@@ -31,6 +33,7 @@ public class DockerWsApiImpl implements DockerWsApi {
     }
   }
 
+  /** Attempt to shutdown and tidy up. */
   public void close() {
     try {
       client.stop();
@@ -39,6 +42,7 @@ public class DockerWsApiImpl implements DockerWsApi {
     }
   }
 
+  @Override
   public Future<Session> attach(
       final String containerId,
       final boolean logs,

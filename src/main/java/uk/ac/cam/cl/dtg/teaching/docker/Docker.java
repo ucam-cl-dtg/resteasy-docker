@@ -21,12 +21,14 @@ import uk.ac.cam.cl.dtg.teaching.docker.api.DockerRestApi;
 import uk.ac.cam.cl.dtg.teaching.docker.api.DockerWsApi;
 import uk.ac.cam.cl.dtg.teaching.docker.api.DockerWsApiImpl;
 
+/** Provides access to the Docker API. */
 public class Docker {
 
   private ResteasyWebTarget webTarget;
 
   private DockerWsApiImpl wsApiImpl;
 
+  /** Construct a new instance which attempts to connect to the given host and port. */
   public Docker(String hostname, int port, int maxConnections) {
     PoolingClientConnectionManager cm = new PoolingClientConnectionManager();
     cm.setDefaultMaxPerRoute(maxConnections);
@@ -40,6 +42,9 @@ public class Docker {
     wsApiImpl = new DockerWsApiImpl(hostname, port);
   }
 
+  /**
+   * Create an instance of the API object using the provided listener for performance monitoring.
+   */
   public DockerApi api(final ApiListener listener) {
     final DockerRestApi dockerProxy = webTarget.proxy(DockerRestApi.class);
     DockerApi proxy =

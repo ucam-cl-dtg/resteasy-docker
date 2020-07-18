@@ -80,8 +80,8 @@ public class ContainerConfig {
   private String macAddress;
 
   /**
-   * An object mapping ports to an empty object in the form of:
-   * "ExposedPorts": { "&lt;port>/&lt;tcp|udp>: {}" }.
+   * An object mapping ports to an empty object in the form of: "ExposedPorts": {
+   * "&lt;port>/&lt;tcp|udp>: {}" }.
    */
   @JsonProperty("ExposedPorts")
   private Map<String, ?> exposedPorts;

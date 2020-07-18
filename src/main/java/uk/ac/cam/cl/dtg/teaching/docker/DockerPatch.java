@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uk.ac.cam.cl.dtg.teaching.docker.api.DockerApi;
 
+/** Collection of workarounds for some docker bugs. */
 public class DockerPatch {
 
   private static final String DOCKER_AUFS_ERROR_PREFIX = "Driver aufs failed to remove";
@@ -18,6 +19,7 @@ public class DockerPatch {
 
   private static final Logger log = LoggerFactory.getLogger(DockerPatch.class);
 
+  /** Delete a container with retries and attempts to clean up mount points. */
   public static void deleteContainer(DockerApi api, String id, Boolean force, Boolean removeVolumes)
       throws ApiUnavailableException {
     for (int retry = 1; retry <= 5; ++retry) {

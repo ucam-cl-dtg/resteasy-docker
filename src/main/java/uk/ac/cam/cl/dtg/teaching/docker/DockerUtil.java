@@ -13,6 +13,7 @@ import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerConfig;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerInfo;
 import uk.ac.cam.cl.dtg.teaching.docker.model.ContainerResponse;
 
+/** Utility methods for interacting with the API. */
 public class DockerUtil {
 
   public static String bind(File host, File container) {
@@ -23,6 +24,7 @@ public class DockerUtil {
     return host.getPath() + ":" + container.getPath() + (readOnly ? ":ro" : "");
   }
 
+  /** Attempt to delete the container with the specified name (rather than by ID). */
   public static void deleteContainerByName(String name, DockerApi docker)
       throws ApiUnavailableException {
     List<Container> containers = docker.listContainers(true, null, null, null, null);
@@ -81,6 +83,9 @@ public class DockerUtil {
     }
   }
 
+  /**
+   * Creates a container with the specified command, waits for it to finish and returns the output.
+   */
   public static String attachAndWait(String cmd, String stdin, String image, DockerApi docker)
       throws ApiUnavailableException {
     String name = UUID.randomUUID().toString();
@@ -105,7 +110,7 @@ public class DockerUtil {
     private StringBuffer output;
     private String data;
 
-    public AttachListener(StringBuffer output, String data) {
+    AttachListener(StringBuffer output, String data) {
       this.output = output;
       this.data = data;
     }
