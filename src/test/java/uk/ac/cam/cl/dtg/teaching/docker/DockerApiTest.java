@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,32 +42,26 @@ public class DockerApiTest {
   }
 
   @Test
-  public void testAttach() {
+  public void testAttach() throws InterruptedException {
     int num = 50;
-    Thread[] t = new Thread[num];
+    ExecutorService executor = Executors.newFixedThreadPool(num);
     for (int i = 0; i < num; i++) {
       final int j = i;
-      t[i] =
-          new Thread() {
+      executor.submit(
+          new Callable<Void>() {
             @Override
-            public void run() {
-              try {
-                String response =
-                    DockerUtil.attachAndWait(
-                        "read FOO; echo hello $FOO", j + "\n", "ubuntu:16.04", api);
-                Assert.assertEquals("hello " + j, response.trim());
-              } catch (Exception e) {
-                throw new Error(e);
-              }
+            public Void call() throws Exception {
+              String response =
+                  DockerUtil.attachAndWait(
+                      "read FOO; echo hello $FOO", j + "\n", "ubuntu:16.04", api);
+              Assert.assertEquals("hello " + j, response.trim());
+              return null;
             }
-          };
-      t[i].start();
+          });
     }
-    try {
-      for (int i = 0; i < num; i++) {
-        t[i].join();
-      }
-    } catch (InterruptedException e) {
+    executor.shutdown();
+    if (!executor.awaitTermination(60, TimeUnit.SECONDS)) {
+      Assert.fail("Timed out waiting for executor pool to finish.");
     }
   }
 
