@@ -20,7 +20,12 @@ public class DockerWsApiImpl implements DockerWsApi {
   private int port;
   private WebSocketClient client;
 
-  /** Constructs a new instance which attempts to connect to the given hostname and port. */
+  /**
+   * Constructs a new instance which attempts to connect to the given hostname and port.
+   *
+   * @param hostname name of the server to connect to
+   * @param port to connect to on the server
+   */
   public DockerWsApiImpl(String hostname, int port) {
     this.hostname = hostname;
     this.port = port;

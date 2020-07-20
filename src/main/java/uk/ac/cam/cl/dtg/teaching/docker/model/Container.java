@@ -30,7 +30,6 @@ public class Container {
 
   public Container() {}
 
-  /** Create a new Container object. */
   public Container(
       String command, long created, String id, String image, String[] names, Port[] ports) {
     super();

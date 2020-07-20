@@ -55,6 +55,7 @@ public interface DockerRestApi {
    *
    * @param id of the container
    * @return the container's exit code
+   * @throws ApiUnavailableException if the docker API is not contactable
    */
   @POST
   @Path("/containers/{id}/wait")
@@ -110,6 +111,7 @@ public interface DockerRestApi {
    *
    * @param id of container to kill
    * @param signal either a string (SIGKILL) or a number (9)
+   * @throws ApiUnavailableException if the docker API is not contactable
    */
   @POST
   @Path("/containers/{id}/kill")

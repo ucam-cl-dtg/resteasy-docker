@@ -28,7 +28,13 @@ public class Docker {
 
   private DockerWsApiImpl wsApiImpl;
 
-  /** Construct a new instance which attempts to connect to the given host and port. */
+  /**
+   * Construct a new instance which attempts to connect to the given host and port.
+   *
+   * @param hostname the name of the server to connect to
+   * @param port the port to connect to
+   * @param maxConnections the maximum number of simultaneous open connections to the server
+   */
   public Docker(String hostname, int port, int maxConnections) {
     PoolingClientConnectionManager cm = new PoolingClientConnectionManager();
     cm.setDefaultMaxPerRoute(maxConnections);
@@ -44,6 +50,9 @@ public class Docker {
 
   /**
    * Create an instance of the API object using the provided listener for performance monitoring.
+   *
+   * @param listener callback object for updating with performance information
+   * @return a new DockerApi instance
    */
   public DockerApi api(final ApiListener listener) {
     final DockerRestApi dockerProxy = webTarget.proxy(DockerRestApi.class);

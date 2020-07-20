@@ -19,7 +19,16 @@ public class DockerPatch {
 
   private static final Logger log = LoggerFactory.getLogger(DockerPatch.class);
 
-  /** Delete a container with retries and attempts to clean up mount points. */
+  /**
+   * Delete a container with retries and attempts to clean up mount points.
+   *
+   * @param api connection to the Docker API
+   * @param id the container Id
+   * @param force delete the container even if its running
+   * @param removeVolumes attempt to remove any volumes attached to the container
+   *
+   * @throws ApiUnavailableException if there is a problem connecting to the Docker server
+   */
   public static void deleteContainer(DockerApi api, String id, Boolean force, Boolean removeVolumes)
       throws ApiUnavailableException {
     for (int retry = 1; retry <= 5; ++retry) {

@@ -24,7 +24,13 @@ public class DockerUtil {
     return host.getPath() + ":" + container.getPath() + (readOnly ? ":ro" : "");
   }
 
-  /** Attempt to delete the container with the specified name (rather than by ID). */
+  /**
+   * Attempt to delete the container with the specified name (rather than by ID).
+   *
+   * @param name the name (not the Id) of the container to delete
+   * @param docker connection to the Docker API
+   * @throws ApiUnavailableException if the docker API is not contactable
+   */
   public static void deleteContainerByName(String name, DockerApi docker)
       throws ApiUnavailableException {
     List<Container> containers = docker.listContainers(true, null, null, null, null);
@@ -36,7 +42,14 @@ public class DockerUtil {
     }
   }
 
-  /** Wait until a container is running. */
+  /**
+   * Wait until a container is running.
+   *
+   * @param containerId the Id of the container
+   * @param docker connection to the docker API
+   * @return true if we managed to wait for the container to stop
+   * @throws ApiUnavailableException if the docker API is not contactable
+   */
   public static boolean waitRunning(String containerId, DockerApi docker)
       throws ApiUnavailableException {
     try {
@@ -53,7 +66,14 @@ public class DockerUtil {
     return false;
   }
 
-  /** Kill a container. */
+  /**
+   * Kill a container.
+   *
+   * @param containerId the Id of the container
+   * @param docker connection to the docker API
+   * @return true if we killed the container
+   * @throws ApiUnavailableException if the docker API is not contactable
+   */
   public static boolean killContainer(String containerId, DockerApi docker)
       throws ApiUnavailableException {
     try {
@@ -70,7 +90,15 @@ public class DockerUtil {
     }
   }
 
-  /** Inspect a container. */
+  /**
+   * Inspect a container.
+   *
+   * @param containerId the Id of the container
+   * @param showSize include the size in the response
+   * @param docker connection to the docker API
+   * @return a ContainerInfo object populated for this container
+   * @throws ApiUnavailableException if the docker API is not contactable
+   */
   public static ContainerInfo inspectContainer(
       String containerId, Boolean showSize, DockerApi docker) throws ApiUnavailableException {
     try {
@@ -85,6 +113,13 @@ public class DockerUtil {
 
   /**
    * Creates a container with the specified command, waits for it to finish and returns the output.
+   *
+   * @param cmd the command to run in the container
+   * @param stdin text to write to the container's standard input
+   * @param image name of the image to use for the container
+   * @param docker connection to the docker API
+   * @return the output of the container
+   * @throws ApiUnavailableException if the docker API is not contactable
    */
   public static String attachAndWait(String cmd, String stdin, String image, DockerApi docker)
       throws ApiUnavailableException {
