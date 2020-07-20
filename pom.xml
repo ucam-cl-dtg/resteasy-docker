@@ -1,10 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>uk.ac.cam.cl.dtg.web</groupId>
     <artifactId>resteasy-docker</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.9-SNAPSHOT</version>
+    <version>1.0.9</version>
 
     <name>RESTEasy Docker</name>
     <description>Thin binding of the Docker API into a RESTEasy client proxy</description>
@@ -24,10 +23,10 @@
     </properties>
 
     <scm>
-        <url>>https://gitlab.developers.cam.ac.uk/cst/dtg/automated-teaching/java-accessor</url>
+        <url>&gt;https://gitlab.developers.cam.ac.uk/cst/dtg/automated-teaching/java-accessor</url>
         <developerConnection>scm:git:ssh://git@github.com/ucam-cl-dtg/resteasy-docker.git
         </developerConnection>
-        <tag>HEAD</tag>
+        <tag>resteasy-docker-1.0.9</tag>
     </scm>
 
     <developers>
