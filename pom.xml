@@ -3,7 +3,7 @@
     <groupId>uk.ac.cam.cl.dtg.web</groupId>
     <artifactId>resteasy-docker</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.10</version>
+    <version>1.0.11-SNAPSHOT</version>
 
     <name>RESTEasy Docker</name>
     <description>Thin binding of the Docker API into a RESTEasy client proxy</description>
@@ -26,7 +26,7 @@
         <url>&gt;https://gitlab.developers.cam.ac.uk/cst/dtg/automated-teaching/java-accessor</url>
         <developerConnection>scm:git:ssh://git@github.com/ucam-cl-dtg/resteasy-docker.git
         </developerConnection>
-        <tag>resteasy-docker-1.0.10</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <developers>
