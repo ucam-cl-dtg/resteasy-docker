@@ -26,7 +26,6 @@ public class DockerPatch {
    * @param id the container Id
    * @param force delete the container even if its running
    * @param removeVolumes attempt to remove any volumes attached to the container
-   *
    * @throws ApiUnavailableException if there is a problem connecting to the Docker server
    */
   public static void deleteContainer(DockerApi api, String id, Boolean force, Boolean removeVolumes)
