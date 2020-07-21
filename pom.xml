@@ -23,7 +23,7 @@
     </properties>
 
     <scm>
-        <url>&gt;https://gitlab.developers.cam.ac.uk/cst/dtg/automated-teaching/java-accessor</url>
+        <url>https://github.com/ucam-cl-dtg/resteasy-docker.git</url>
         <developerConnection>scm:git:ssh://git@github.com/ucam-cl-dtg/resteasy-docker.git
         </developerConnection>
         <tag>HEAD</tag>
